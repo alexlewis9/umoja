@@ -7,7 +7,7 @@ interface TabsProps {
 
 export default function TabsComponent( { tabLabels, tabsContent }: TabsProps ) {
     return (
-        <Tabs.Root variant="plain" p={3}>
+        <Tabs.Root defaultValue={tabLabels[0]} variant={"plain"} p={4}>
             <TabsList gap="4" justifyContent={"center"} border="none" mt={8} mb={4} flexWrap={"wrap"}>
                 {tabLabels.map((label, index) => (
                     <Tabs.Trigger 
