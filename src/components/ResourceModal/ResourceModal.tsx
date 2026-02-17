@@ -1,6 +1,7 @@
-import { Box, Flex, Image, Text, chakra } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, Text, chakra } from "@chakra-ui/react";
+import { RESOURCE_DETAIL_CARD_PLACEHOLDER_ICON } from "./resourceDetailCardPlaceholder";
 
-type ResourceModalProps = {
+type ResourceDetailCardProps = {
   title: string;
   description: string;
   imageSrc?: string;
@@ -8,16 +9,13 @@ type ResourceModalProps = {
   onClick?: () => void;
 };
 
-const placeholderIcon =
-  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><rect x='3' y='4' width='18' height='16' rx='2' ry='2' fill='none' stroke='%239CA3AF' stroke-width='1.5'/><circle cx='9' cy='10' r='1.5' fill='%239CA3AF'/><path d='M7 17l4-5 3 4 2-2 3 3' fill='none' stroke='%239CA3AF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>";
-
-export default function ResourceModal({
+export default function ResourceDetailCard({
   title,
   description,
   imageSrc,
   imageAlt = "",
   onClick,
-}: ResourceModalProps) {
+}: ResourceDetailCardProps) {
   const content = (
     <>
       <Flex
@@ -28,14 +26,15 @@ export default function ResourceModal({
         py={{ base: 5, md: 7 }}
         bg="#5A2A0F"
       >
-        <Text
+        <Heading
+          as="h2"
           color="white"
           fontWeight="700"
           fontSize={{ base: "4xl", md: "6xl" }}
           lineHeight="1.05"
         >
           {title}
-        </Text>
+        </Heading>
 
         <Box
           w={{ base: "170px", md: "390px" }}
@@ -68,7 +67,7 @@ export default function ResourceModal({
               justifyContent="center"
             >
               <Image
-                src={placeholderIcon}
+                src={RESOURCE_DETAIL_CARD_PLACEHOLDER_ICON}
                 alt="Placeholder"
                 boxSize={{ base: 10, md: 16 }}
                 opacity={0.9}
