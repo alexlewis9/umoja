@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Center, Heading, Text } from "@chakra-ui/react";
+import { Box, Center, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import TeamCard from "@/components/TeamCard/TeamCard";
 
 const demoAvatar =
@@ -16,22 +16,34 @@ export default function TeamCardTestPage() {
     <Box minH="100vh" bg="gray.50" px={6} py={10}>
       <Center mb={6} textAlign="center" flexDirection="column" gap={2}>
         <Heading size="lg">TeamCard Test</Heading>
-        <Text color="gray.600">Sample data rendered for quick visual QA.</Text>
+        <Text color="gray.600">
+          Visual QA: image avatar, fallback avatar, and optional description.
+        </Text>
       </Center>
 
-      <Center gap={10} flexWrap="wrap">
-        <TeamCard
-          name="Amina Diallo"
-          position="Community Partnerships"
-          description="Connects local organizers with resources and helps grow inclusive, high-impact programs."
-          imageUrl={demoAvatar}
-        />
-        <TeamCard
-          name="No Image"
-          position="Program Coordinator"
-          description="Fallback avatar placeholder should render when no image is provided."
-        />
-      </Center>
+      <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} gap={10} maxW="1100px" mx="auto">
+        <Center>
+          <TeamCard
+            name="Amina Diallo"
+            position="Community Partnerships"
+            description="Connects local organizers with resources and helps grow inclusive, high-impact programs."
+            imageUrl={demoAvatar}
+          />
+        </Center>
+        <Center>
+          <TeamCard
+            name="No Image"
+            position="Program Coordinator"
+            description="Avatar fallback should render initials when no image is provided."
+          />
+        </Center>
+        <Center>
+          <TeamCard
+            name="No Description"
+            position="Volunteer Lead"
+          />
+        </Center>
+      </SimpleGrid>
     </Box>
   );
 }
