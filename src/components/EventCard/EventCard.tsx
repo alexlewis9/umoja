@@ -31,11 +31,11 @@ export function EventCard({
   time,
   location,
   description,
-  tags = ["Fun", "Networking", "Summer", "Free"],
+  tags = [],
   registerLabel = "Register here",
   registerHref = "#",
   imageSrc,
-  imageAlt = "Event image",
+  imageAlt = `${title} image`,
 }: EventCardProps) {
   return (
     <Box
