@@ -25,7 +25,14 @@ export default function ResourceCard({
         p={5}
         bg="#5A2A0F"
       >
-        <Text fontSize="xl" fontWeight="bold" color="white">
+        <Text
+          fontSize="xl"
+          fontWeight="bold"
+          color="white"
+          flex="1"
+          minW={0}
+          lineClamp={2}
+        >
           {title}
         </Text>
 
@@ -70,16 +77,7 @@ export default function ResourceCard({
       </Flex>
 
       <Box p={5}>
-        <Text
-          fontSize="sm"
-          color="gray.700"
-          style={{
-            display: "-webkit-box",
-            WebkitLineClamp: 4,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-          }}
-        >
+        <Text fontSize="sm" color="gray.700" lineClamp={4}>
           {description}
         </Text>
       </Box>
