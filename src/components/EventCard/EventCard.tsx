@@ -38,30 +38,31 @@ export function EventCard({
 }: EventCardProps) {
   return (
     <Box
-      border="2px solid"
-      borderColor="#2b3fa8"
-      borderRadius="14px"
-      bg="#ececec"
+      borderWidth="2px"
+      borderColor="blue.700"
+      borderRadius="xl"
+      bg="bg.subtle"
       p={{ base: 2, md: 3 }}
-      boxShadow="0 1px 3px rgba(0,0,0,0.2)"
+      boxShadow="sm"
     >
       <Box
-        border="1px solid"
-        borderColor="blackAlpha.400"
-        borderRadius="12px"
-        bg="#e9e9e9"
+        borderWidth="1px"
+        borderColor="border"
+        borderRadius="xl"
+        bg="bg.muted"
         p={{ base: 3, md: 4 }}
-        boxShadow="inset 0 0 0 1px rgba(255,255,255,0.35)"
+        boxShadow="inner"
         position="relative"
       >
         <HStack align="stretch" gap={{ base: 3, md: 5 }}>
           <Box
-            minW={{ base: "120px", md: "220px" }}
-            w={{ base: "120px", md: "220px" }}
-            h={{ base: "140px", md: "220px" }}
-            borderRadius="14px"
-            bg="#d3d3d3"
-            border="10px solid black"
+            minW={{ base: "32", md: "56" }}
+            w={{ base: "32", md: "56" }}
+            h={{ base: "36", md: "56" }}
+            borderRadius="xl"
+            bg="bg.emphasized"
+            borderWidth={{ base: "4px", md: "6px" }}
+            borderColor="fg"
             display="flex"
             alignItems="center"
             justifyContent="center"
@@ -72,56 +73,56 @@ export function EventCard({
               <Image
                 src={imageSrc}
                 alt={imageAlt}
-                w="100%"
-                h="100%"
+                w="full"
+                h="full"
                 objectFit="cover"
-                borderRadius="6px"
+                borderRadius="md"
               />
             ) : (
               <Box
-                w={{ base: "58px", md: "92px" }}
-                h={{ base: "58px", md: "92px" }}
-                border="6px solid"
+                w={{ base: "14", md: "24" }}
+                h={{ base: "14", md: "24" }}
+                borderWidth={{ base: "2px", md: "4px" }}
                 borderColor="blackAlpha.300"
-                borderRadius="4px"
+                borderRadius="sm"
                 position="relative"
                 display="grid"
                 gridTemplateColumns="repeat(3, 1fr)"
                 gridTemplateRows="repeat(3, 1fr)"
-                gap={{ base: "3px", md: "5px" }}
-                p={{ base: "4px", md: "6px" }}
+                gap={{ base: 1, md: 2 }}
+                p={{ base: 1, md: 2 }}
               >
                 <Box
                   position="absolute"
-                  top={{ base: "-14px", md: "-18px" }}
-                  left={{ base: "10px", md: "14px" }}
-                  w={{ base: "8px", md: "10px" }}
-                  h={{ base: "12px", md: "16px" }}
+                  top={{ base: "-3", md: "-4" }}
+                  left={{ base: "3", md: "4" }}
+                  w={{ base: "2", md: "3" }}
+                  h={{ base: "3", md: "4" }}
                   bg="blackAlpha.300"
-                  borderRadius="2px"
+                  borderRadius="xs"
                 />
                 <Box
                   position="absolute"
-                  top={{ base: "-14px", md: "-18px" }}
-                  right={{ base: "10px", md: "14px" }}
-                  w={{ base: "8px", md: "10px" }}
-                  h={{ base: "12px", md: "16px" }}
+                  top={{ base: "-3", md: "-4" }}
+                  right={{ base: "3", md: "4" }}
+                  w={{ base: "2", md: "3" }}
+                  h={{ base: "3", md: "4" }}
                   bg="blackAlpha.300"
-                  borderRadius="2px"
+                  borderRadius="xs"
                 />
 
                 {Array.from({ length: 9 }).map((_, index) => (
-                  <Box key={index} bg="blackAlpha.200" borderRadius="1px" />
+                  <Box key={index} bg="blackAlpha.200" borderRadius="xs" />
                 ))}
               </Box>
             )}
           </Box>
 
-          <Stack flex="1" justify="space-between" minH={{ base: "140px", md: "220px" }}>
+          <Stack flex="1" justify="space-between" minH={{ base: "36", md: "56" }}>
             <Stack align="center" gap={1} textAlign="center" pt={{ base: 0, md: 2 }}>
               <Heading
                 as="h3"
-                color="black"
+                color="fg"
                 fontWeight="800"
                 fontSize={{ base: "2xl", md: "4xl" }}
                 lineClamp={2}
@@ -129,15 +130,15 @@ export function EventCard({
               >
                 {title}
               </Heading>
-              <Text color="black" fontWeight="700" fontSize={{ base: "xl", md: "3xl" }} lineHeight="1.1">
+              <Text color="fg" fontWeight="700" fontSize={{ base: "xl", md: "3xl" }} lineHeight="shorter">
                 {date}
                 {time ? ` | ${time}` : ""}
               </Text>
               <Text
-                color="black"
+                color="fg"
                 fontWeight="600"
                 fontSize={{ base: "lg", md: "2xl" }}
-                lineHeight="1.1"
+                lineHeight="shorter"
                 lineClamp={1}
                 overflowWrap="anywhere"
               >
@@ -147,10 +148,10 @@ export function EventCard({
 
             <Text
               textAlign="center"
-              color="blackAlpha.900"
+              color="fg.muted"
               px={{ base: 0, md: 3 }}
               fontSize={{ base: "sm", md: "2xl" }}
-              lineHeight="1.5"
+              lineHeight="tall"
               lineClamp={3}
               overflowWrap="anywhere"
             >
@@ -161,16 +162,16 @@ export function EventCard({
               <Button
                 asChild
                 size={{ base: "md", md: "lg" }}
-                minW={{ base: "190px", md: "240px" }}
+                minW={{ base: "48", md: "60" }}
                 px={{ base: 10, md: 12 }}
                 borderRadius="full"
-                bg="#5e0b0b"
-                color="white"
+                bg="red.900"
+                color="fg.inverted"
                 fontStyle="italic"
                 fontSize={{ base: "xl", md: "2xl" }}
                 fontWeight="600"
                 textDecoration="underline"
-                _hover={{ bg: "#4a0808", textDecoration: "none" }}
+                _hover={{ bg: "red.800", textDecoration: "none" }}
               >
                 <a href={registerHref}>{registerLabel}</a>
               </Button>
@@ -189,13 +190,13 @@ export function EventCard({
           {tags.map((tag) => (
             <WrapItem key={tag}>
               <Box
-                bg="black"
-                color="white"
+                bg="fg"
+                color="fg.inverted"
                 px={2}
                 py={1}
-                borderRadius="4px"
-                fontSize={{ base: "10px", md: "xs" }}
-                lineHeight="1"
+                borderRadius="sm"
+                fontSize="xs"
+                lineHeight="short"
               >
                 {tag}
               </Box>
