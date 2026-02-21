@@ -1,36 +1,39 @@
 import { Tabs, TabsList } from '@chakra-ui/react'
 
-interface TabsProps {
-    tabLabels: string[];
-    tabsContent: string[];
+interface TabItem {
+    label: string;
+    content: string;
 }
+interface TabsProps {
+    tabItems: [TabItem, ... TabItem[]];
+} 
 
-export default function TabsComponent( { tabLabels, tabsContent }: TabsProps ) {
+export default function TabsComponent( { tabItems }: TabsProps ) {
     return (
-        <Tabs.Root defaultValue={tabLabels[0]} variant={"plain"} p={4}>
+        <Tabs.Root defaultValue={tabItems[0].label} variant={"plain"} p={4}>
             <TabsList gap="4" justifyContent={"center"} border="none" mt={8} mb={4} flexWrap={"wrap"}>
-                {tabLabels.map((label, index) => (
+                {tabItems.map((item, index) => (
                     <Tabs.Trigger 
                         key={index}
-                        value={label}
+                        value={item.label}
                         borderRadius={"full"}
                         px={6}
                         py={2}
                         height={"auto"}
-                        width={"120px"}
+                        width={{ base: "100%", md: "120px" }}
                         border="2px black solid"
                         justifyContent={"center"}
                         _selected={{
                             bg: '#000000',
                             color: 'white'
                         }}>
-                        {label}
+                        {item.label}
                     </Tabs.Trigger>
                 ))}
             </TabsList>
-            {tabsContent.map((content, index) => (
-                <Tabs.Content key={index} value={tabLabels[index]}>
-                    {content}
+            {tabItems.map((item, index) => (
+                <Tabs.Content key={index} value={item.label}>
+                    {item.content}
                 </Tabs.Content>
             ))}
         </Tabs.Root>
