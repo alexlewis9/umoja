@@ -1,0 +1,2 @@
+export const RESOURCE_CARD_PLACEHOLDER_IMAGE_SRC =
+  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><rect x='3' y='4' width='18' height='16' rx='2' ry='2' fill='none' stroke='%239CA3AF' stroke-width='1.5'/><circle cx='9' cy='10' r='1.5' fill='%239CA3AF'/><path d='M7 17l4-5 3 4 2-2 3 3' fill='none' stroke='%239CA3AF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>";
