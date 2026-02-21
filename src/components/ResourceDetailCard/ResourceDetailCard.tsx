@@ -24,24 +24,24 @@ export default function ResourceDetailCard({
         gap={8}
         px={{ base: 6, md: 12 }}
         py={{ base: 5, md: 7 }}
-        bg="#5A2A0F"
+        bg="orange.900"
       >
         <Heading
           as="h2"
-          color="white"
+          color="fg.inverted"
           fontWeight="700"
           fontSize={{ base: "4xl", md: "6xl" }}
-          lineHeight="1.05"
+          lineHeight="shorter"
         >
           {title}
         </Heading>
 
         <Box
-          w={{ base: "170px", md: "390px" }}
-          h={{ base: "96px", md: "168px" }}
-          bg="white"
+          w={{ base: "44", md: "96" }}
+          h={{ base: "24", md: "42" }}
+          bg="bg.surface"
           borderRadius={{ base: "lg", md: "2xl" }}
-          boxShadow="0 4px 10px rgba(0,0,0,0.28)"
+          boxShadow="md"
           display="flex"
           alignItems="center"
           justifyContent="center"
@@ -60,7 +60,7 @@ export default function ResourceDetailCard({
             <Box
               w="100%"
               h="100%"
-              bg="gray.100"
+              bg="bg.muted"
               borderRadius="md"
               display="flex"
               alignItems="center"
@@ -78,7 +78,7 @@ export default function ResourceDetailCard({
       </Flex>
 
       <Box px={{ base: 6, md: 12 }} py={{ base: 6, md: 8 }}>
-        <Text fontSize={{ base: "lg", md: "3xl" }} color="gray.800" lineHeight="1.35">
+        <Text fontSize={{ base: "lg", md: "3xl" }} color="fg" lineHeight="tall">
           {description}
         </Text>
       </Box>
@@ -86,13 +86,13 @@ export default function ResourceDetailCard({
   );
 
   const baseProps = {
-    w: "100%",
-    maxW: "1220px",
-    bg: "#E7E7E7",
+    w: "full",
+    maxW: "container.xl",
+    bg: "bg.subtle",
     borderRadius: "2xl",
-    border: "1px solid",
-    borderColor: "gray.400",
-    boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+    borderWidth: "1px",
+    borderColor: "border",
+    boxShadow: "md",
     overflow: "hidden",
     textAlign: "left" as const,
   };
@@ -104,7 +104,7 @@ export default function ResourceDetailCard({
         onClick={onClick}
         {...baseProps}
         cursor="pointer"
-        _hover={{ boxShadow: "0 6px 14px rgba(0,0,0,0.25)" }}
+        _hover={{ boxShadow: "lg" }}
         transition="box-shadow 120ms ease"
       >
         {content}

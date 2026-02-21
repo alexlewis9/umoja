@@ -23,12 +23,12 @@ export default function ResourceCard({
         justify="space-between"
         gap={4}
         p={5}
-        bg="#5A2A0F"
+        bg="orange.900"
       >
         <Text
           fontSize="xl"
           fontWeight="bold"
-          color="white"
+          color="fg.inverted"
           flex="1"
           minW={0}
           lineClamp={2}
@@ -37,11 +37,11 @@ export default function ResourceCard({
         </Text>
 
         <Box
-          w="88px"
-          h="64px"
-          bg="white"
+          w="24"
+          h="16"
+          bg="bg.surface"
           borderRadius="md"
-          boxShadow="0 3px 6px rgba(0,0,0,0.25)"
+          boxShadow="sm"
           display="flex"
           alignItems="center"
           justifyContent="center"
@@ -59,7 +59,7 @@ export default function ResourceCard({
             <Box
               w="70%"
               h="70%"
-              bg="gray.100"
+              bg="bg.muted"
               borderRadius="sm"
               display="flex"
               alignItems="center"
@@ -77,7 +77,7 @@ export default function ResourceCard({
       </Flex>
 
       <Box p={5}>
-        <Text fontSize="sm" color="gray.700" lineClamp={4}>
+        <Text fontSize="sm" color="fg.muted" lineClamp={4}>
           {description}
         </Text>
       </Box>
@@ -89,11 +89,11 @@ export default function ResourceCard({
       <chakra.button
         type="button"
         onClick={onClick}
-        w="280px"
-        bg="white"
+        w="72"
+        bg="bg.surface"
         borderRadius="lg"
-        border="1px solid"
-        borderColor="gray.300"
+        borderWidth="1px"
+        borderColor="border"
         boxShadow="sm"
         overflow="hidden"
         textAlign="left"
@@ -110,11 +110,11 @@ export default function ResourceCard({
   return (
     <Box
       as="div"
-      w={{ base: "100%", sm: "280px" }}
-      bg="white"
+      w={{ base: "full", sm: "72" }}
+      bg="bg.surface"
       borderRadius="lg"
-      border="1px solid"
-      borderColor="gray.300"
+      borderWidth="1px"
+      borderColor="border"
       boxShadow="sm"
       overflow="hidden"
       textAlign="left"
