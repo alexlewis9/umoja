@@ -149,7 +149,11 @@ export default async function AboutPage() {
           </Box>
 
           <Box as="section" w="full">
-            <SimpleGrid columns={{ base: 1, md: 2 }} gap={{ base: 6, md: 8 }} alignItems="center">
+            <SimpleGrid
+              columns={{ base: 1, md: 2 }}
+              gap={{ base: 6, md: 8 }}
+              alignItems="center"
+            >
               <Stack gap={3} textAlign="center" px={{ base: 2, md: 4 }}>
                 <Heading
                   as="h2"
@@ -158,7 +162,11 @@ export default async function AboutPage() {
                 >
                   {about.story?.title}
                 </Heading>
-                <Text fontSize={{ base: "sm", md: "md" }} color="gray.700" lineHeight="tall">
+                <Text
+                  fontSize={{ base: "sm", md: "md" }}
+                  color="gray.700"
+                  lineHeight="tall"
+                >
                   {about.story?.content}
                 </Text>
               </Stack>
