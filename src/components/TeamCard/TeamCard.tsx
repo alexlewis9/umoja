@@ -40,8 +40,8 @@ export default function TeamCard({
           boxShadow="lg"
           overflow="hidden"
         >
-          <Avatar.Fallback name={name} />
-          {imageUrl ? <Avatar.Image src={imageUrl} alt={`${name} avatar`} /> : null}
+          <Avatar.Fallback name={name} aria-label={`${name} profile photo`} />
+          {imageUrl ? <Avatar.Image src={imageUrl} alt={`${name} profile photo`} /> : null}
         </Avatar.Root>
 
         <Heading as="h3" size="md" color="gray.800">
