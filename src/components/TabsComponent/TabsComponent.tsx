@@ -12,9 +12,9 @@ export default function TabsComponent( { tabItems }: TabsProps ) {
     return (
         <Tabs.Root defaultValue={tabItems[0].label} variant={"plain"} p={4}>
             <TabsList gap="4" justifyContent={"center"} border="none" mt={8} mb={4} flexWrap={"wrap"}>
-                {tabItems.map((item, index) => (
+                {tabItems.map((item) => (
                     <Tabs.Trigger 
-                        key={index}
+                        key={item.label}
                         value={item.label}
                         borderRadius={"full"}
                         px={6}
@@ -31,8 +31,8 @@ export default function TabsComponent( { tabItems }: TabsProps ) {
                     </Tabs.Trigger>
                 ))}
             </TabsList>
-            {tabItems.map((item, index) => (
-                <Tabs.Content key={index} value={item.label}>
+            {tabItems.map((item) => (
+                <Tabs.Content key={item.label} value={item.label}>
                     {item.content}
                 </Tabs.Content>
             ))}
