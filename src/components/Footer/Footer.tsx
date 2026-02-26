@@ -1,26 +1,26 @@
-import { Box, Text, Flex, Image, Input, Button } from "@chakra-ui/react";
-import { Link } from "@chakra-ui/react"
+import { Box, Text, Flex, Image, Input, Button, Link } from "@chakra-ui/react";
+import NextLink from "next/link";
 
 export default function Footer() {
     return (
         <Box as="footer" width="100%">
             <Box bg="#60220e" w="100%" pt={5} pb={{ base: 5, md: 1 }} px={4} color="white">
-                <Flex justifyContent="space-between" alignItems={{ base: "center", md: "flex-start" }} flexDirection={{ base: "column", md: "row" }} padding={2} paddingLeft={5} paddingRight={5}gap={10} margin={"0 auto"}>
+                <Flex maxW="1200px" justifyContent="space-between" alignItems={{ base: "center", md: "flex-start" }} flexDirection={{ base: "column", md: "row" }} padding={2} paddingLeft={5} paddingRight={5}gap={10} margin={"0 auto"}>
                     <Flex flexDirection="column" alignItems="left" textAlign="center" gap={4} >
-                        <Link href="/">
+                        <NextLink href="/">
                             <Image height="50px" width="auto" src="/umoja-logo.svg" alt="logo" />
-                        </Link>
+                        </NextLink>
                         <Text fontSize="15px" maxW="270px" textAlign={"justify"}>
                             We look to empower individuals and groups, increase voice and recognition, and bridge community gaps.
                         </Text>
                     </Flex>
                     <Flex flexDirection="column" alignItems="center" textAlign={"center"} gap={6} flex="1">
                         <Flex flexDirection="column" gap={2} fontSize="16px">
-                            <Link display="block" href="/">Home</Link>
-                            <Link display="block" href="/about">About</Link>
-                            <Link display="block" href="/events">Events</Link>
-                            <Link display="block" href="/resources">Resources</Link>
-                            <Link display="block" href="/faqs">FAQs</Link>
+                            <NextLink href="/">Home</NextLink>
+                            <NextLink href="/about">About</NextLink>
+                            <NextLink href="/events">Events</NextLink>
+                            <NextLink href="/resources">Resources</NextLink>
+                            <NextLink href="/faqs">FAQs</NextLink>
                         </Flex>
                         <Flex justifyContent="center" alignItems="center" gap={4}>
                             <Link href="mailto:info@durham1.ca">
