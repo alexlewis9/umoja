@@ -1,3 +1,4 @@
-title: UMOJA Basketball Academy
-description: >-
-  This is a description.
+registration:
+  title: "Registration"
+  description: "Register for UMOJA Basketball."
+  formUrl: "TODO: paste form embed URL here"
