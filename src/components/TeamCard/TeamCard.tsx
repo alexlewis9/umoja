@@ -1,4 +1,4 @@
-import { Avatar, Box, Text } from "@chakra-ui/react";
+import { Avatar, Box, Heading, Text } from "@chakra-ui/react";
 
 type TeamCardProps = {
   name: string;
@@ -15,47 +15,50 @@ export default function TeamCard({
 }: TeamCardProps) {
   return (
     <Box
-      w={{ base: "100%", sm: "300px" }}
-      bg="white"
+      w={{ base: "full", sm: "xs" }}
+      bg="bg.surface"
       borderRadius="xl"
-      border="1px solid"
-      borderColor="blackAlpha.300"
-      boxShadow="0 8px 18px rgba(0,0,0,0.12)"
+      borderWidth="1px"
+      borderColor="border"
+      boxShadow="md"
       overflow="hidden"
     >
       {/* Top banner  */}
-      <Box
-        h="120px"
-        bg="#5A1D0D"
-      />
+      <Box h="30" bg="orange.900" />
 
       {/* Content */}
       <Box position="relative" p={6} pt={16} textAlign="center">
         <Avatar.Root
           position="absolute"
-          top="-66px"
+          top="-16"
           left="50%"
           transform="translateX(-50%)"
-          w="120px"
-          h="120px"
-          border="4px solid white"
-          boxShadow="0 6px 10px rgba(0,0,0,0.18)"
+          w="30"
+          h="30"
+          borderWidth="4px"
+          borderColor="bg.surface"
+          boxShadow="lg"
           overflow="hidden"
         >
-          <Avatar.Fallback name={name} />
-          {imageUrl ? <Avatar.Image src={imageUrl} alt={`${name} avatar`} /> : null}
+          <Avatar.Fallback name={name} aria-label={`${name} profile photo`} />
+          {imageUrl ? <Avatar.Image src={imageUrl} alt={`${name} profile photo`} /> : null}
         </Avatar.Root>
 
-        <Text as="h3" fontSize="xl" fontWeight="bold" color="gray.800">
+        <Heading as="h3" size="md" color="gray.800">
           {name}
-        </Text>
+        </Heading>
 
         <Text fontSize="md" color="gray.700" fontStyle="italic">
           {position}
         </Text>
 
         {description ? (
-          <Text mt={3} fontSize="sm" color="gray.700">
+          <Text
+            mt={3}
+            fontSize="sm"
+            color="gray.700"
+            lineClamp={3}
+          >
             {description}
           </Text>
         ) : null}
