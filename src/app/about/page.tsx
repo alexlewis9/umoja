@@ -1,5 +1,4 @@
-import { Box, Container, Heading, Text, Stack } from "@chakra-ui/react";
-import path from "path";
+import { Box, Container, Heading, Text, Stack, Separator } from "@chakra-ui/react";import path from "path";
 import { loadYaml } from "@/lib/loadYaml";
 
 type SiteContent = {
@@ -45,7 +44,7 @@ export default async function AboutPage() {
             </Text>
           </Box>
 
-          <Box h="1px" bg="gray.200" />
+          <Separator my={10} />
 
           {/* our story */}
           <Box>
@@ -58,7 +57,7 @@ export default async function AboutPage() {
             </Text>
           </Box>
 
-          <Box h="1px" bg="gray.200" />
+          <Separator my={10} />
 
           {/* meet our team */}
           <Box>
