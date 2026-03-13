@@ -25,6 +25,30 @@ const STATUS_COLOR: Record<EventStatus, string> = {
 
 type Filter = "all" | "upcoming" | "ongoing" | "past";
 
+const SAMPLE_EVENTS: EventItem[] = [
+  {
+    id: "sample-1",
+    title: "Sample Event (replace later)",
+    date: "Feb 21, 2026",
+    time: "6:00 PM",
+    location: "Durham College Gym",
+    description: "TODO: Replace with real event copy from data source.",
+    status: "upcoming",
+    registrationUrl: "", //TODO
+  },
+  {
+    id: "sample-2",
+    title: "Sample Event (replace later)",
+    date: "Mar 3, 2026",
+    time: "5:30 PM",
+    location: "Community Center",
+    description: "TODO: Replace with real event copy from data source.",
+    status: "upcoming",
+    registrationUrl: "", //TODO
+  },
+];
+
+
 export function EventsTable({
   events,
   maxW = "720px",
@@ -35,31 +59,10 @@ export function EventsTable({
   const [filter, setFilter] = useState<Filter>("all");
 
   // Sample placeholder events
-  const data: EventItem[] =
-    events && events.length > 0
-      ? events
-      : [
-          {
-            id: "sample-1",
-            title: "Sample Event (replace later)",
-            date: "Feb 21, 2026",
-            time: "6:00 PM",
-            location: "Durham College Gym",
-            description: "TODO: Replace with real event copy from data source.",
-            status: "upcoming",
-            registrationUrl: "", // TODO
-          },
-          {
-            id: "sample-2",
-            title: "Sample Event (replace later)",
-            date: "Mar 3, 2026",
-            time: "5:30 PM",
-            location: "Community Center",
-            description: "TODO: Replace with real event copy from data source.",
-            status: "upcoming",
-            registrationUrl: "", // TODO
-          },
-        ];
+  const data = useMemo<EventItem[]>(
+    () => (events && events.length > 0 ? events : SAMPLE_EVENTS),
+    [events]
+  );
 
   const filtered = useMemo(() => {
     if (filter === "all") return data;
@@ -170,7 +173,15 @@ function EventRow({ event }: { event: EventItem }) {
         </Text>
 
         {event.description ? (
-          <Text color="gray.700" noOfLines={3}>
+          <Text
+            color="gray.700"
+            style={{
+              display: "-webkit-box",
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
             {event.description}
           </Text>
         ) : null}
@@ -178,11 +189,10 @@ function EventRow({ event }: { event: EventItem }) {
         <HStack justify="flex-end">
           {event.registrationUrl && event.registrationUrl.trim() !== "" ? (
             <AppButton
-              as="a"
-              href={event.registrationUrl}
-              target="_blank"
-              rel="noreferrer"
               size="sm"
+              onClick={() => {
+                window.open(event.registrationUrl, "_blank", "noopener,noreferrer");
+              }}
             >
               Register
             </AppButton>
