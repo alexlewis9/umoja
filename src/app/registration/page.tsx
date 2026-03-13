@@ -1,6 +1,6 @@
 import { Box, Container, Heading, Text } from "@chakra-ui/react";
 import path from "path";
-import { loadYaml } from "@/lib/loadYaml";
+import { loadYaml } from "../../lib/loadYaml";
 
 type SiteContent = {
   registration?: {
@@ -14,17 +14,14 @@ export default async function RegistrationPage() {
   const sitePath = path.join(process.cwd(), "src/content/site.yaml");
   const site = (await loadYaml(sitePath)) as SiteContent;
 
-  const reg = site?.registration;
-  const title = reg?.title ?? "Registration";
+  const title = site?.registration?.title ?? "Registration";
   const description =
-    reg?.description ??
+    site?.registration?.description ??
     "Complete the registration form below.";
-  const formUrl = reg?.formUrl;
 
-  const hasRealUrl =
-    typeof formUrl === "string" &&
-    formUrl.trim().length > 0 &&
-    !formUrl.includes("TODO");
+  const formUrl = site?.registration?.formUrl?.trim() ?? "";
+
+  const hasRealUrl = formUrl.length > 0 && !formUrl.toLowerCase().includes("todo");
 
   return (
     <Container maxW="container.lg" py={{ base: 16, md: 24 }}>
@@ -47,22 +44,23 @@ export default async function RegistrationPage() {
               overflow="hidden"
               shadow="md"
             >
-              {/* Google Forms */}
-              <Box
-                as="iframe"
+              <iframe
                 src={formUrl}
                 title="Registration Form"
-                w="100%"
-                h={{ base: "75vh", md: "80vh" }}
-                border="0"
+                style={{ width: "100%", height: "80vh", border: "0" }}
               />
             </Box>
 
             <Text mt={4} fontSize="sm" color="gray.500">
               Having trouble viewing the embed?{" "}
-              <Box as="a" href={formUrl} target="_blank" rel="noreferrer" color="blue.400">
+              <a
+                href={formUrl}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: "#63b3ed", textDecoration: "underline" }}
+              >
                 Open the form in a new tab
-              </Box>
+              </a>
               .
             </Text>
           </>
@@ -79,7 +77,7 @@ export default async function RegistrationPage() {
               Registration form goes here
             </Heading>
             <Text color="gray.600">
-              TODO: Add the form embed URL in <b>src/content/site.yaml</b> under{" "}
+              TODO: Add the embed URL in <b>src/content/site.yaml</b> under{" "}
               <b>registration.formUrl</b>.
             </Text>
           </Box>
