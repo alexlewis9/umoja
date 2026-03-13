@@ -2,8 +2,8 @@
 
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
-import { useMemo, useState } from "react";
-import { Box, Button, Flex, HStack, Stack, Text } from "@chakra-ui/react";
+import { useState } from "react";
+import { Box, Button, Flex, HStack, Link, Stack, Text } from "@chakra-ui/react";
 
 type NavItem = { label: string; href: string };
 
@@ -22,10 +22,8 @@ function isActivePath(pathname: string, href: string) {
 }
 
 export function Navbar() {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
-
-  const items = useMemo(() => NAV_ITEMS, []);
 
   return (
     <Box
@@ -48,36 +46,39 @@ export function Navbar() {
       >
         {/* Logo */}
         <HStack gap={3}>
-          <Text
+          <Link
             as={NextLink}
             href="/"
             fontSize={{ base: "lg", md: "xl" }}
             fontWeight={800}
             color="white"
+            _hover={{ textDecoration: "none", opacity: 0.9 }}
           >
             UMOJA
-          </Text>
+          </Link>
         </HStack>
 
         {/* Desktop links */}
         <HStack gap={2} display={{ base: "none", md: "flex" }}>
-          {items.map((item) => {
+          {NAV_ITEMS.map((item) => {
             const active = isActivePath(pathname, item.href);
+
             return (
-              <Button
+              <Link
                 key={item.href}
                 as={NextLink}
                 href={item.href}
-                size="sm"
-                variant="ghost"
+                px={3}
+                py={1.5}
+                fontSize="sm"
+                fontWeight={700}
+                borderRadius="full"
                 color={active ? "white" : "whiteAlpha.800"}
                 bg={active ? "whiteAlpha.200" : "transparent"}
-                _hover={{ bg: "whiteAlpha.200" }}
-                borderRadius="full"
-                fontWeight={700}
+                _hover={{ bg: "whiteAlpha.200", textDecoration: "none" }}
               >
                 {item.label}
-              </Button>
+              </Link>
             );
           })}
         </HStack>
@@ -97,32 +98,32 @@ export function Navbar() {
 
       {/* Mobile menu */}
       <Box display={{ base: open ? "block" : "none", md: "none" }} pb={4}>
-        <Stack
-          maxW="container.lg"
-          mx="auto"
-          px={{ base: 4, md: 6 }}
-          gap={2}
-        >
-          {items.map((item) => {
+        <Stack maxW="container.lg" mx="auto" px={{ base: 4, md: 6 }} gap={2}>
+          {NAV_ITEMS.map((item) => {
             const active = isActivePath(pathname, item.href);
+
             return (
-              <Button
+              <Link
                 key={item.href}
                 as={NextLink}
                 href={item.href}
-                size="md"
-                justifyContent="flex-start"
-                variant="ghost"
+                px={4}
+                py={2.5}
+                borderRadius="lg"
+                fontWeight={700}
                 color={active ? "white" : "whiteAlpha.900"}
                 bg={active ? "whiteAlpha.200" : "transparent"}
-                _hover={{ bg: "whiteAlpha.200" }}
-                borderRadius="lg"
+                _hover={{ bg: "whiteAlpha.200", textDecoration: "none" }}
                 onClick={() => setOpen(false)}
               >
                 {item.label}
-              </Button>
+              </Link>
             );
           })}
+
+          <Text fontSize="sm" color="whiteAlpha.600" pt={2}>
+            {/* optional: footer hint */}
+          </Text>
         </Stack>
       </Box>
     </Box>
