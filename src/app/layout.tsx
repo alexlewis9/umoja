@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Lato } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
+import Footer from "@/components/Footer/Footer";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
