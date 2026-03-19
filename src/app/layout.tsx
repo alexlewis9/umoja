@@ -27,11 +27,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lato.variable} ${lato.variable}`}>
-        <Providers>
-          {children}
-          <Footer />
-        </Providers>
+      <body className={`${lato.variable} ${geistMono.variable}`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
