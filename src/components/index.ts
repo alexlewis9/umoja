@@ -2,4 +2,4 @@ export { default as PhotoGallery } from "./PhotoGallery/PhotoGallery";
 export type {
   PhotoGalleryItem,
   PhotoGalleryProps,
-} from "./PhotoGallery/PhotoGallery";
+} from "./PhotoGallery/PhotoGallery.types";
