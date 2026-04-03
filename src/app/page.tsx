@@ -106,7 +106,13 @@ export default async function Home() {
 
   return (
     <Box bg="homePageBg" color="homeText">
-      <Container maxW="homePage" w="full" mx="auto" px="homePageX" py="homeSectionY">
+      <Container
+        maxW="homePage"
+        w="full"
+        mx="auto"
+        px="homePageX"
+        py="homeSectionY"
+      >
         <Stack gap="homeSectionY" align="center" w="full" mx="auto">
           <HomeOverview
             content={site.home?.overview}
@@ -115,8 +121,19 @@ export default async function Home() {
           />
 
           {offerItems.length > 0 ? (
-            <Stack as="section" gap="homeSectionGap" textAlign="center" w="full" align="center">
-              <Heading as="h2" fontSize="homeSectionTitle" lineHeight="short" fontWeight="bold">
+            <Stack
+              as="section"
+              gap="homeSectionGap"
+              textAlign="center"
+              w="full"
+              align="center"
+            >
+              <Heading
+                as="h2"
+                fontSize="homeSectionTitle"
+                lineHeight="short"
+                fontWeight="bold"
+              >
                 {offer?.heading ?? "What we offer"}
               </Heading>
               <Flex
@@ -151,11 +168,19 @@ export default async function Home() {
               alignItems="start"
             >
               <Stack gap={2} textAlign="center" align="center">
-                <Heading as="h2" fontSize="homeSectionTitle" lineHeight="short" fontWeight="bold">
+                <Heading
+                  as="h2"
+                  fontSize="homeSectionTitle"
+                  lineHeight="short"
+                  fontWeight="bold"
+                >
                   {site.home?.voices?.heading ?? "Voices of Our Community"}
                 </Heading>
                 {site.home?.voices?.subtitle ? (
-                  <Text color="homeMutedText" fontSize={{ base: "lg", md: "xl" }}>
+                  <Text
+                    color="homeMutedText"
+                    fontSize={{ base: "lg", md: "xl" }}
+                  >
                     {site.home.voices.subtitle}
                   </Text>
                 ) : null}
