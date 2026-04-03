@@ -1,109 +1,252 @@
-import { Box, Container, Heading, SimpleGrid, Text } from "@chakra-ui/react";
-import path from "path";
-import TestimonialCard from "@/components/TestimonialCard/TestimonialCard";
-import WhatWeOfferCard from "@/components/WhatWeOfferCard/WhatWeOfferCard";
-import { loadYaml } from "../lib/loadYaml";
+import { Anta } from "next/font/google";
+import {
+  Box,
+  Button,
+  Container,
+  Heading,
+  HStack,
+  SimpleGrid,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 
-type OfferItem = {
-  title: string;
-  description: string;
-};
+const anta = Anta({
+  weight: "400",
+  subsets: ["latin"],
+});
 
-type SiteContent = {
-  home?: {
-    whatWeOffer?: {
-      heading?: string;
-      items?: OfferItem[];
-    };
-    voices?: {
-      heading?: string;
-      subtitle?: string;
-    };
-  };
-};
+const stats = [
+  { value: "50+", label: "Attendees" },
+  { value: "8-12", label: "Grades" },
+  { value: "Free", label: "Event" },
+];
 
-type TestimonialsContent = {
-  testimonials?: Array<{
-    quote: string;
-    name: string;
-    rating?: number;
-  }>;
-};
+const tags = ["Fun", "Networking", "Summer", "Free"];
 
-export default async function Home() {
-  const sitePath = path.join(process.cwd(), "src/content/site.yaml");
-  const testimonialsPath = path.join(
-    process.cwd(),
-    "src/content/testimonials.yaml",
-  );
-
-  const site = (await loadYaml(sitePath)) as SiteContent;
-  const testimonials = (await loadYaml(
-    testimonialsPath,
-  )) as TestimonialsContent;
-
-  const offer = site.home?.whatWeOffer;
-  const voices = site.home?.voices;
-  const testimonialItems = testimonials.testimonials ?? [];
-
+export default function EventsPage() {
   return (
-    <Container
-      maxW="container.xl"
-      py={{ base: 12, md: 20 }}
-      textAlign="center"
-      mx="auto"
-      w="full"
-    >
-      <Box as="section" mb={{ base: 12, md: 16 }}>
-        <Heading as="h2" size="3xl" color="black" mb={3}>
-          {offer?.heading}
-        </Heading>
-      </Box>
-      <Box as="section" mb={{ base: 12, md: 16 }}>
-        <SimpleGrid
-          columns={{ base: 1, md: 2, lg: 4 }}
-          gap={6}
-          justifyItems="center"
-        >
-          {(offer?.items ?? []).map((item) => (
-            <WhatWeOfferCard
-              key={item.title}
-              title={item.title}
-              description={item.description}
-              w="full"
-              maxW="sm"
-            />
-          ))}
-        </SimpleGrid>
-      </Box>
-
-      <Box as="section">
-        <SimpleGrid columns={{ base: 1, lg: 12 }} gap={8} alignItems="start">
-          <Box gridColumn={{ base: "span 1", lg: "span 4" }} textAlign="left">
-            <Heading as="h2" size="3xl" color="black" mb={3}>
-              {voices?.heading}
-            </Heading>
-            <Text color="gray.600" fontSize="lg" maxW="md">
-              {voices?.subtitle}
-            </Text>
-          </Box>
-          <SimpleGrid
-            gridColumn={{ base: "span 1", lg: "span 8" }}
-            columns={{ base: 1, md: 2 }}
-            gap={4}
-            justifyItems="center"
+    <Box bg="#FFFFFF" minH="100vh">
+      <Container
+        maxW="1280px"
+        px={{ base: 6, md: 10 }}
+        pt={{ base: 10, md: 14 }}
+        pb={{ base: 16, md: 24 }}
+      >
+        <VStack gap={3} mb={{ base: 10, md: 12 }}>
+          <Heading
+            as="h1"
+            className={anta.className}
+            color="#000000"
+            fontWeight="400"
+            fontSize={{ base: "34px", md: "56px" }}
+            lineHeight="1"
+            textAlign="center"
           >
-            {testimonialItems.map((testimonial) => (
-              <TestimonialCard
-                key={`${testimonial.name}-${testimonial.quote}`}
-                quote={testimonial.quote}
-                name={testimonial.name}
-                rating={testimonial.rating}
-              />
+            Events
+          </Heading>
+
+          <Text
+            className={anta.className}
+            color="#9E9E9E"
+            fontSize={{ base: "18px", md: "26px" }}
+            textAlign="center"
+          >
+            Join us for exciting events!
+          </Text>
+        </VStack>
+
+        <Box
+          maxW="760px"
+          mx="auto"
+          borderRadius="18px"
+          overflow="hidden"
+          bgGradient="linear(to-r, #000000, #7A2E00)"
+          px={{ base: 6, md: 10 }}
+          py={{ base: 5, md: 6 }}
+          mb={{ base: 10, md: 12 }}
+        >
+          <SimpleGrid columns={3} gap={6}>
+            {stats.map((stat) => (
+              <VStack key={stat.label} gap={0} color="white">
+                <Text
+                  className={anta.className}
+                  fontSize={{ base: "28px", md: "44px" }}
+                  lineHeight="1"
+                >
+                  {stat.value}
+                </Text>
+                <Text
+                  className={anta.className}
+                  fontSize={{ base: "14px", md: "20px" }}
+                  lineHeight="1.1"
+                  textAlign="center"
+                >
+                  {stat.label}
+                </Text>
+              </VStack>
             ))}
           </SimpleGrid>
-        </SimpleGrid>
-      </Box>
-    </Container>
+        </Box>
+
+        <VStack maxW="1040px" mx="auto" w="full" align="stretch" gap={6}>
+          <HStack gap={4} justify="center" flexWrap="wrap">
+            <Button
+              className={anta.className}
+              bg="#000000"
+              color="#FFFFFF"
+              borderRadius="999px"
+              px={8}
+              h="44px"
+              fontSize="16px"
+              fontWeight="400"
+              _hover={{ bg: "#111111" }}
+            >
+              All Events
+            </Button>
+
+            <Button
+              className={anta.className}
+              variant="outline"
+              borderColor="#8E8E8E"
+              color="#000000"
+              borderRadius="999px"
+              px={8}
+              h="44px"
+              fontSize="16px"
+              fontWeight="400"
+              bg="#FFFFFF"
+              _hover={{ bg: "#F6F6F6" }}
+            >
+              Upcoming
+            </Button>
+
+            <Button
+              className={anta.className}
+              variant="outline"
+              borderColor="#8E8E8E"
+              color="#000000"
+              borderRadius="999px"
+              px={8}
+              h="44px"
+              fontSize="16px"
+              fontWeight="400"
+              bg="#FFFFFF"
+              _hover={{ bg: "#F6F6F6" }}
+            >
+              Past
+            </Button>
+          </HStack>
+
+          <Box
+            w="100%"
+            border="1px solid #B8B8B8"
+            borderRadius="14px"
+            bg="#FFFFFF"
+            boxShadow="0 2px 8px rgba(0,0,0,0.12)"
+            px={{ base: 4, md: 5 }}
+            py={{ base: 4, md: 5 }}
+          >
+            <Box
+              display="grid"
+              gridTemplateColumns={{ base: "1fr", md: "180px 1fr" }}
+              gap={{ base: 5, md: 6 }}
+              alignItems="center"
+            >
+              <Box
+                w={{ base: "140px", md: "160px" }}
+                h={{ base: "140px", md: "160px" }}
+                mx="auto"
+                border="8px solid #000000"
+                borderRadius="14px"
+                bg="#EAEAEA"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                fontSize={{ base: "54px", md: "64px" }}
+              >
+                📅
+              </Box>
+
+              <VStack align="stretch" gap={4}>
+                <VStack gap={1}>
+                  <Text
+                    fontWeight="700"
+                    color="#111111"
+                    fontSize={{ base: "24px", md: "34px" }}
+                    textAlign="center"
+                  >
+                    Event Name
+                  </Text>
+                  <Text
+                    fontWeight="700"
+                    color="#111111"
+                    fontSize={{ base: "18px", md: "24px" }}
+                    textAlign="center"
+                  >
+                    Date
+                  </Text>
+                  <Text
+                    fontWeight="700"
+                    color="#111111"
+                    fontSize={{ base: "18px", md: "24px" }}
+                    textAlign="center"
+                  >
+                    Location
+                  </Text>
+                </VStack>
+
+                <Text
+                  color="#1F1F1F"
+                  fontSize={{ base: "14px", md: "18px" }}
+                  lineHeight="1.5"
+                  textAlign="center"
+                  maxW="780px"
+                  mx="auto"
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing
+                  elit, sed do eiusmod tempor incididunt ut labore et dolore
+                  magna aliqua.
+                </Text>
+
+                <Box textAlign="center">
+                  <Button
+                    className={anta.className}
+                    bg="#6E0F0F"
+                    color="#FFFFFF"
+                    borderRadius="999px"
+                    px={7}
+                    h="42px"
+                    fontSize="16px"
+                    fontWeight="400"
+                    _hover={{ bg: "#5A0C0C" }}
+                  >
+                    Register here
+                  </Button>
+                </Box>
+
+                <HStack justify="flex-end" gap={2} flexWrap="wrap">
+                  {tags.map((tag) => (
+                    <Box
+                      key={tag}
+                      bg="#000000"
+                      color="#FFFFFF"
+                      borderRadius="6px"
+                      px={2.5}
+                      py={1}
+                      fontSize="12px"
+                      lineHeight="1"
+                    >
+                      {tag}
+                    </Box>
+                  ))}
+                </HStack>
+              </VStack>
+            </Box>
+          </Box>
+        </VStack>
+      </Container>
+    </Box>
   );
 }
