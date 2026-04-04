@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 
 type PhotoGalleryHeaderProps = {
   title: string;
@@ -8,7 +8,7 @@ type PhotoGalleryHeaderProps = {
 export default function PhotoGalleryHeader({ title, subtitle }: PhotoGalleryHeaderProps) {
   return (
     <Box as="header" mb="1.5rem" textAlign="center">
-      <Text
+      <Heading
         as="h2"
         fontSize={{ base: "2rem", md: "clamp(2rem, 4vw, 3.25rem)" }}
         color="#151515"
@@ -18,7 +18,7 @@ export default function PhotoGalleryHeader({ title, subtitle }: PhotoGalleryHead
         lineHeight="1"
       >
         {title}
-      </Text>
+      </Heading>
       <Text
         mt="0.75rem"
         color="#3f3a36"
