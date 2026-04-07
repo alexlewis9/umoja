@@ -1,32 +1,33 @@
 import FAQTable from "../../components/FAQTable/FAQTable";
-import { Box, Container, Heading } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import path from "path";
 import { loadYaml } from "../../lib/loadYaml";
+import PageHeader from "@/components/PageHeader/PageHeader";
 
 type FAQContent = {
+  header?: {
     title?: string;
-    description?: string;
-    faqItems?: {
-        question: string;
-        answer: string;
-    }[];
+    subtitle?: string;
+  };
+  faqItems?: {
+    question: string;
+    answer: string;
+  }[];
 };
 
 export default async function FAQs() {
-    const faqPath = path.join(process.cwd(), "src/content/faq.yaml");
-    const faqContent = (await loadYaml(faqPath)) as FAQContent;
+  const faqPath = path.join(process.cwd(), "src/content/faq.yaml");
+  const faqContent = (await loadYaml(faqPath)) as FAQContent;
 
-    return (
-        <Container maxW="container.lg" py={{ base: 16, md: 20 }}>
-            <Box as="main">
-                <Heading as="h1" size="3xl" mb={4} textAlign={"center"}>
-                    {faqContent?.title}
-                </Heading>
-                <Heading as="h2" size="lg" mb={8} textAlign={"center"} color="gray.600" fontStyle="italic">
-                    {faqContent?.description}
-                </Heading>
-                {faqContent?.faqItems && <FAQTable faqData={faqContent.faqItems} />}
-            </Box>
-        </Container>
-    );
+  return (
+    <Container maxW="container.lg" mx="auto" w="full" py={{ base: 16, md: 20 }}>
+      <Box as="main" maxW="4xl" mx="auto" w="full">
+        <PageHeader
+          title={faqContent?.header?.title}
+          subtitle={faqContent?.header?.subtitle}
+        />
+        {faqContent?.faqItems && <FAQTable faqData={faqContent.faqItems} />}
+      </Box>
+    </Container>
+  );
 }
