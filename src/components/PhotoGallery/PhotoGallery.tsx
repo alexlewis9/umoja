@@ -1,15 +1,34 @@
 import { Box } from "@chakra-ui/react";
 
 import GalleryTile from "./GalleryTile";
-import PhotoGalleryHeader from "./PhotoGalleryHeader";
-import type { GalleryLayoutSlot, PhotoGalleryProps } from "./PhotoGallery.types";
+import PageHeader from "@/components/PageHeader/PageHeader";
+import type {
+  GalleryLayoutSlot,
+  PhotoGalleryProps,
+} from "./PhotoGallery.types";
 export type { PhotoGalleryItem, PhotoGalleryProps } from "./PhotoGallery.types";
 
 const galleryLayout: GalleryLayoutSlot[] = [
-  { fallbackLabel: "Image", columnSpan: { base: 1, sm: 2, md: 2 }, rowSpan: { base: 1, sm: 1, md: 1 } },
-  { fallbackLabel: "Image", columnSpan: { base: 1, sm: 2, md: 2 }, rowSpan: { base: 1, sm: 1, md: 1 } },
-  { fallbackLabel: "Image", columnSpan: { base: 1, sm: 2, md: 2 }, rowSpan: { base: 1, sm: 1, md: 1 } },
-  { fallbackLabel: "Image", columnSpan: { base: 1, sm: 2, md: 2 }, rowSpan: { base: 1, sm: 1, md: 1 } },
+  {
+    fallbackLabel: "Image",
+    columnSpan: { base: 1, sm: 2, md: 2 },
+    rowSpan: { base: 1, sm: 1, md: 1 },
+  },
+  {
+    fallbackLabel: "Image",
+    columnSpan: { base: 1, sm: 2, md: 2 },
+    rowSpan: { base: 1, sm: 1, md: 1 },
+  },
+  {
+    fallbackLabel: "Image",
+    columnSpan: { base: 1, sm: 2, md: 2 },
+    rowSpan: { base: 1, sm: 1, md: 1 },
+  },
+  {
+    fallbackLabel: "Image",
+    columnSpan: { base: 1, sm: 2, md: 2 },
+    rowSpan: { base: 1, sm: 1, md: 1 },
+  },
   {
     fallbackLabel: "Video",
     mediaType: "video",
@@ -21,13 +40,41 @@ const galleryLayout: GalleryLayoutSlot[] = [
     columnSpan: { base: 2, sm: 3, md: 4 },
     rowSpan: { base: 2, sm: 3, md: 3 },
   },
-  { fallbackLabel: "Image", columnSpan: { base: 1, sm: 2, md: 2 }, rowSpan: { base: 1, sm: 2, md: 2 } },
-  { fallbackLabel: "Image", columnSpan: { base: 1, sm: 2, md: 2 }, rowSpan: { base: 1, sm: 2, md: 2 } },
-  { fallbackLabel: "Image", columnSpan: { base: 1, sm: 3, md: 3 }, rowSpan: { base: 1, sm: 1, md: 1 } },
-  { fallbackLabel: "Image", columnSpan: { base: 1, sm: 3, md: 3 }, rowSpan: { base: 1, sm: 1, md: 1 } },
-  { fallbackLabel: "Image", columnSpan: { base: 1, sm: 4, md: 4 }, rowSpan: { base: 1, sm: 1, md: 1 } },
-  { fallbackLabel: "Image", columnSpan: { base: 1, sm: 4, md: 4 }, rowSpan: { base: 1, sm: 1, md: 1 } },
-  { fallbackLabel: "Image", columnSpan: { base: 1, sm: 4, md: 4 }, rowSpan: { base: 1, sm: 1, md: 1 } },
+  {
+    fallbackLabel: "Image",
+    columnSpan: { base: 1, sm: 2, md: 2 },
+    rowSpan: { base: 1, sm: 2, md: 2 },
+  },
+  {
+    fallbackLabel: "Image",
+    columnSpan: { base: 1, sm: 2, md: 2 },
+    rowSpan: { base: 1, sm: 2, md: 2 },
+  },
+  {
+    fallbackLabel: "Image",
+    columnSpan: { base: 1, sm: 3, md: 3 },
+    rowSpan: { base: 1, sm: 1, md: 1 },
+  },
+  {
+    fallbackLabel: "Image",
+    columnSpan: { base: 1, sm: 3, md: 3 },
+    rowSpan: { base: 1, sm: 1, md: 1 },
+  },
+  {
+    fallbackLabel: "Image",
+    columnSpan: { base: 1, sm: 4, md: 4 },
+    rowSpan: { base: 1, sm: 1, md: 1 },
+  },
+  {
+    fallbackLabel: "Image",
+    columnSpan: { base: 1, sm: 4, md: 4 },
+    rowSpan: { base: 1, sm: 1, md: 1 },
+  },
+  {
+    fallbackLabel: "Image",
+    columnSpan: { base: 1, sm: 4, md: 4 },
+    rowSpan: { base: 1, sm: 1, md: 1 },
+  },
   {
     fallbackLabel: "Video",
     mediaType: "video",
@@ -37,19 +84,26 @@ const galleryLayout: GalleryLayoutSlot[] = [
 ];
 
 export default function PhotoGallery({
-  title = "UMOJA's Photo Gallery",
-  subtitle = "Add your own image or video URLs to replace any placeholder tile.",
+  header,
   items = [],
 }: PhotoGalleryProps) {
+  const title = header?.title ?? "UMOJA's Photo Gallery";
+  const subtitle =
+    header?.subtitle ??
+    "Add your own image or video URLs to replace any placeholder tile.";
   const tileCount = Math.max(items.length, galleryLayout.length);
 
   return (
     <Box as="section" width="100%">
-      <PhotoGalleryHeader title={title} subtitle={subtitle} />
+      <PageHeader title={title} subtitle={subtitle} />
 
       <Box
         display="grid"
-        gridTemplateColumns={{ base: "repeat(2, minmax(0, 1fr))", sm: "repeat(8, minmax(0, 1fr))", md: "repeat(12, minmax(0, 1fr))" }}
+        gridTemplateColumns={{
+          base: "repeat(2, minmax(0, 1fr))",
+          sm: "repeat(8, minmax(0, 1fr))",
+          md: "repeat(12, minmax(0, 1fr))",
+        }}
         gridAutoRows={{ base: "120px", sm: "78px", md: "84px" }}
         gap="0.5rem"
       >
