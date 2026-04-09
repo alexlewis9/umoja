@@ -1,3 +1,9 @@
-title: UMOJA Basketball Academy
-description: >-
-  This is a description.
+about:
+  title: "About"
+  intro: "This is the About page skeleton. Content to be added."
+  missionTitle: "Our Mission"
+  missionBody: "TODO: Add mission text."
+  storyTitle: "Our Story"
+  storyBody: "TODO: Add story."
+  teamTitle: "Meet Our Team"
+  teamBody: "TODO: Add team section."
