@@ -1,4 +1,4 @@
-import { Avatar, Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading, Image, Text } from "@chakra-ui/react";
 
 type TeamCardProps = {
   name: string;
@@ -13,6 +13,11 @@ export default function TeamCard({
   description,
   imageUrl,
 }: TeamCardProps) {
+  const avatarSrc = imageUrl ?? "/profile-photo-placeholder.svg";
+  const avatarAlt = imageUrl
+    ? `${name} profile photo`
+    : "Profile photo placeholder";
+
   return (
     <Box
       w={{ base: "full", sm: "xs" }}
@@ -24,25 +29,30 @@ export default function TeamCard({
       overflow="hidden"
     >
       {/* Top banner  */}
-      <Box h="30" bg="orange.900" />
+      <Box h={{ base: "120px", md: "140px" }} bg="brandBannerGradient" />
 
       {/* Content */}
-      <Box position="relative" p={6} pt={16} textAlign="center">
-        <Avatar.Root
+      <Box
+        position="relative"
+        p={6}
+        pt={{ base: 24, md: 24 }}
+        textAlign="center"
+      >
+        <Box
           position="absolute"
-          top="-16"
+          top="-24"
           left="50%"
           transform="translateX(-50%)"
           w="30"
           h="30"
+          borderRadius="full"
           borderWidth="4px"
           borderColor="bg.surface"
           boxShadow="lg"
           overflow="hidden"
         >
-          <Avatar.Fallback name={name} aria-label={`${name} profile photo`} />
-          {imageUrl ? <Avatar.Image src={imageUrl} alt={`${name} profile photo`} /> : null}
-        </Avatar.Root>
+          <Image src={avatarSrc} alt={avatarAlt} />
+        </Box>
 
         <Heading as="h3" size="md" color="gray.800">
           {name}
@@ -53,12 +63,7 @@ export default function TeamCard({
         </Text>
 
         {description ? (
-          <Text
-            mt={3}
-            fontSize="sm"
-            color="gray.700"
-            lineClamp={3}
-          >
+          <Text mt={3} fontSize="sm" color="gray.700" lineClamp={3}>
             {description}
           </Text>
         ) : null}
@@ -66,4 +71,3 @@ export default function TeamCard({
     </Box>
   );
 }
-
