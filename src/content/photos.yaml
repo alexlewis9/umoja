@@ -1,0 +1,16 @@
+header:
+  title: UMOJA Photo Gallery
+  subtitle: Moments from practices, events, and community celebrations.
+items:
+  - type: image
+    src: https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80
+    alt: Youth players practicing basketball drills
+    label: Practice Session
+  - type: image
+    src: https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=1200&q=80
+    alt: Youth team in a huddle
+    label: Team Huddle
+  - type: video
+    src: https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4
+    poster: https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=1200&q=80
+    label: Community Highlights

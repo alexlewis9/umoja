@@ -30,15 +30,15 @@ export default function TestimonialCard({
       bg="white"
       borderRadius="xl"
       boxShadow="md"
-      p={{ base: 5, md: 6 }}
-      maxW="2xl"
+      p={{ base: 4, md: 4 }}
+      maxW="md"
       w="full"
       borderWidth="1px"
       borderStyle="solid"
       borderColor="border"
     >
       <Text
-        fontSize={{ base: "5xl", md: "6xl" }}
+        fontSize={{ base: "4xl", md: "5xl" }}
         lineHeight="none"
         color="orange.800"
         fontWeight="bold"
@@ -50,7 +50,12 @@ export default function TestimonialCard({
         &ldquo;
       </Text>
 
-      <Text mt={2} color="fg" fontSize={{ base: "lg", md: "2xl" }} lineHeight="tall">
+      <Text
+        mt={2}
+        color="fg"
+        fontSize={{ base: "md", md: "lg" }}
+        lineHeight="tall"
+      >
         {quote}
       </Text>
 
@@ -58,6 +63,7 @@ export default function TestimonialCard({
         <HStack
           mt={4}
           gap={2}
+          justify="center"
           color="orange.600"
           lineHeight="none"
           role="img"
@@ -67,7 +73,7 @@ export default function TestimonialCard({
             <Text
               key={index}
               data-testid="rating-star"
-              fontSize={{ base: "3xl", md: "4xl" }}
+              fontSize={{ base: "2xl", md: "3xl" }}
               lineHeight="none"
               color="orange.600"
               aria-hidden="true"
@@ -78,7 +84,12 @@ export default function TestimonialCard({
         </HStack>
       ) : null}
 
-      <Text mt={4} fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold" color="fg">
+      <Text
+        mt={4}
+        fontSize={{ base: "lg", md: "xl" }}
+        fontWeight="bold"
+        color="fg"
+      >
         {name}
       </Text>
     </Box>

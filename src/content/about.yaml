@@ -1,0 +1,21 @@
+hero:
+  title: About UMOJA
+  subtitle: We are a youth-centered organization using basketball to grow confidence and opportunity.
+
+mission:
+  title: Our Mission
+  content: >
+    Our mission is to equip youth with the tools to lead healthy, purpose-driven lives.
+    Through coaching, mentorship, and access to resources, we help young people discover
+    their strengths and use them to uplift their communities.
+
+story:
+  title: Our Story
+  content: >
+    UMOJA started as a neighbourhood initiative led by coaches and volunteers who wanted
+    a safe, positive space for youth. It has grown into a multi-program community effort 
+    connecting families, athletes, mentors, and local partners.
+
+team:
+  title: Meet Our Team
+  subtitle: Dedicated leaders committed to youth development and community impact.

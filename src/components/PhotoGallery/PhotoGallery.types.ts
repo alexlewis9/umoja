@@ -6,9 +6,13 @@ export type PhotoGalleryItem = {
   poster?: string;
 };
 
-export type PhotoGalleryProps = {
+export type PhotoGalleryHeader = {
   title?: string;
   subtitle?: string;
+};
+
+export type PhotoGalleryProps = {
+  header?: PhotoGalleryHeader;
   items?: PhotoGalleryItem[];
 };
 

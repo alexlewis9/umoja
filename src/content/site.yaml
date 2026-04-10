@@ -1,3 +1,15 @@
-title: UMOJA Basketball Academy
-description: >-
-  This is a description.
+home:
+  whatWeOffer:
+    heading: What We Offer
+    items:
+      - title: Basketball Training
+        description: Weekly skill development, game IQ sessions, and confidence-building drills.
+      - title: Mentorship
+        description: Positive role models, leadership coaching, and one-on-one encouragement.
+      - title: Community Events
+        description: Tournaments, showcases, and celebrations that bring neighbours together.
+      - title: Academic Support
+        description: Study sessions and guidance that help youth stay focused in school and sport.
+  voices:
+    heading: Voices of Our Community
+    subtitle: Real stories from athletes, families, and partners.

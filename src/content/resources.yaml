@@ -1,0 +1,23 @@
+header:
+  title: The Resource Room
+  subtitle: Helpful supports for youth, parents, and educators.
+
+resources:
+  - title: Mental Health Support
+    description: Find youth-friendly counseling and wellness services in your area.
+    imageSrc: https://img.icons8.com/fluency/96/heart-with-pulse.png
+  - title: Scholarship Finder
+    description: Explore scholarships and bursaries for student-athletes and youth leaders.
+    imageSrc: https://img.icons8.com/fluency/96/graduation-cap.png
+  - title: Nutrition Guide
+    description: Download practical meal and hydration guidance for active youth.
+    imageSrc: https://img.icons8.com/fluency/96/salad.png
+  - title: Homework Help
+    description: Access tutoring options and after-school study support resources.
+    imageSrc: https://img.icons8.com/fluency/96/books.png
+  - title: Career Exploration
+    description: Learn about mentorship, internships, and future career pathways.
+    imageSrc: https://img.icons8.com/fluency/96/briefcase.png
+  - title: Family Services
+    description: Connect with local supports for housing, food programs, and financial advice.
+    imageSrc: https://img.icons8.com/fluency/96/helping-hand.png
