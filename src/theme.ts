@@ -12,6 +12,9 @@ const config = defineConfig({
     semanticTokens: {
       colors: {
         resourceGridBg: { value: "{colors.brand.maroon}" },
+        brandBannerGradient: {
+          value: "linear-gradient(90deg, #431b07 41%, #823207 100%)",
+        },
       },
     },
   },
