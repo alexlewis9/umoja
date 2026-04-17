@@ -1,6 +1,6 @@
-import { Box, Heading, Text, Badge, Stack } from "@chakra-ui/react";
+import { Badge, Box, Heading, Stack, Text } from "@chakra-ui/react";
 
-interface EventCardProps {
+export interface EventCardProps {
   title: string;
   date: string;
   time?: string;
@@ -21,23 +21,25 @@ export function EventCard({
     upcoming: "green",
     past: "gray",
     ongoing: "blue",
-  };
+  } as const;
 
   return (
     <Box
       borderWidth="1px"
+      borderColor="gray.200"
       borderRadius="lg"
       p={6}
       bg="white"
-      shadow="md"
-      _hover={{ shadow: "lg", transform: "translateY(-2px)" }}
+      boxShadow="sm"
       transition="all 0.2s"
+      _hover={{ boxShadow: "md" }}
     >
       <Stack gap={3}>
         <Box display="flex" justifyContent="space-between" alignItems="start">
-          <Heading as="h3" size="md">
+          <Heading as="h3" size="md" color="gray.900">
             {title}
           </Heading>
+
           <Badge colorScheme={statusColors[status]} fontSize="sm">
             {status}
           </Badge>
@@ -45,13 +47,15 @@ export function EventCard({
 
         <Stack gap={2} fontSize="sm" color="gray.600">
           <Text>
-            📅 {date} {time && `• ${time}`}
+            📅 {date} {time ? `• ${time}` : ""}
           </Text>
           <Text>📍 {location}</Text>
         </Stack>
 
-        <Text color="gray.700" mt={2}>
-          {description}
+        <Text color="gray.700">{description}</Text>
+
+        <Text fontSize="sm" color="gray.500">
+          TODO: Add registration URL
         </Text>
       </Stack>
     </Box>
