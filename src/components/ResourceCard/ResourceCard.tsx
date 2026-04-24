@@ -76,7 +76,7 @@ export default function ResourceCard({
         </Box>
       </Flex>
 
-      <Box p={5}>
+      <Box p={5} bg="whiteAlpha.900">
         <Text fontSize="sm" color="fg.muted" lineClamp={4}>
           {description}
         </Text>

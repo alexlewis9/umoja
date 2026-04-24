@@ -30,7 +30,7 @@ export default function ResourceDetailCard({
           as="h2"
           color="fg.inverted"
           fontWeight="700"
-          fontSize={{ base: "4xl", md: "6xl" }}
+          fontSize={{ base: "2xl", md: "2xl" }}
           lineHeight="shorter"
         >
           {title}
@@ -78,7 +78,7 @@ export default function ResourceDetailCard({
       </Flex>
 
       <Box px={{ base: 6, md: 12 }} py={{ base: 6, md: 8 }}>
-        <Text fontSize={{ base: "lg", md: "3xl" }} color="fg" lineHeight="tall">
+        <Text fontSize={{ base: "sm", md: "lg" }} color="fg">
           {description}
         </Text>
       </Box>
@@ -87,7 +87,7 @@ export default function ResourceDetailCard({
 
   const baseProps = {
     w: "full",
-    maxW: "container.xl",
+    maxW: "container.md",
     bg: "bg.subtle",
     borderRadius: "2xl",
     borderWidth: "1px",

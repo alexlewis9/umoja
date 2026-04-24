@@ -1,6 +1,7 @@
 import { Container } from "@chakra-ui/react";
 import path from "path";
 import { loadYaml } from "@/lib/loadYaml";
+import ResourceClient from "./client";
 import PageHeader from "@/components/PageHeader/PageHeader";
 
 type ResourceItem = {
@@ -34,6 +35,7 @@ export default async function ResourcesPage() {
         title={content.header?.title}
         subtitle={content.header?.subtitle}
       />
+      <ResourceClient resourceContent={content.resources} />
     </Container>
   );
 }
