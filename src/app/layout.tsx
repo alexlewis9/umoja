@@ -4,7 +4,7 @@ import { Providers } from "./providers";
 import "./globals.css";
 import Footer from "@/components/Footer/Footer";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],

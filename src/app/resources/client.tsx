@@ -3,7 +3,7 @@ import ResourceGrid from "../../components/ResourceGrid/ResourceGrid";
 import ResourceCard from "../../components/ResourceCard/ResourceCard";
 import ResourceModal from "../../components/ResourceModal/ResourceModal";
 import ResourceDetailCard from "../../components/ResourceDetailCard/ResourceDetailCard";
-import { Box, Container, Heading } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import { useState } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -13,14 +13,8 @@ export default function ResourceClient({ resourceContent }: any) {
   return (
     <Container maxW="container.lg" py={{ base: 16, md: 24 }}>
       <Box as="main">
-        <Heading as="h1" size="3xl" mb={4} textAlign="center">
-          {resourceContent?.title}
-        </Heading>
-        <Heading as="h2" size="lg" color="gray.600" mb={10} fontStyle="italic" textAlign="center">
-          {resourceContent?.description}
-        </Heading>
         <ResourceGrid
-          resources={resourceContent?.resources || []}
+          resources={resourceContent || []}
           onResourceOpen={(resource) => setSelectedResource(resource)}
           columns={{ base: 1, sm: 2, md: 3 }}
           maxHeight="400px"

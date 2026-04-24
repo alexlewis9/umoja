@@ -1,27 +1,3 @@
-title: The Resource Room
-description: A collection of resources for students, including academic support, mental health resources, and more.
-resources:
-  - title: Mental Health
-    description: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante. 
-    imageSrc: /Mental-Health.svg
-    imageAlt: Mental Health
-  - title: Canva
-    description: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula  eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante
-    imageSrc: /Canva.svg
-    imageAlt: Canva
-  - title: Physical Health
-    description: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante
-    imageSrc: /Physical-Health.svg
-    imageAlt: Physical Health
-  - title: Resume Writing
-    description: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula    eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante
-    imageSrc: /Resume.svg
-    imageAlt: Resume Writing
-  - title: Study Tips
-    description: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula    eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante. Donec pede justo, fringilla vel, aliquet nsequat vitae, eleifend ac, enim. Aliquam lorem ante
-    imageSrc: /Study-Tips.svg
-    imageAlt: Study Tips
-
 header:
   title: The Resource Room
   subtitle: Helpful supports for youth, parents, and educators.
