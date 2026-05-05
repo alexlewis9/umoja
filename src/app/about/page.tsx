@@ -52,6 +52,8 @@ type GalleryImage = {
   alt: string;
 };
 
+type StoryImages = [GalleryImage, GalleryImage, GalleryImage];
+
 function getGalleryImages(
   items: Array<{
     src?: string;
@@ -66,6 +68,20 @@ function getGalleryImages(
     }));
 }
 
+function getStoryImages(sourceImages: GalleryImage[]): StoryImages | null {
+  const [firstImage, secondImage, thirdImage] = sourceImages;
+
+  if (!firstImage) {
+    return null;
+  }
+
+  return [
+    firstImage,
+    secondImage ?? firstImage,
+    thirdImage ?? secondImage ?? firstImage,
+  ];
+}
+
 export default async function AboutPage() {
   const aboutPath = path.join(process.cwd(), "src/content/about.yaml");
   const teamPath = path.join(process.cwd(), "src/content/team.yaml");
@@ -74,11 +90,7 @@ export default async function AboutPage() {
   const team = (await loadYaml(teamPath)) as TeamContent;
 
   const storySourceImages = getGalleryImages(about.story?.images);
-  const storyImages = [
-    storySourceImages[0],
-    storySourceImages[1] ?? storySourceImages[0],
-    storySourceImages[2] ?? storySourceImages[1] ?? storySourceImages[0],
-  ].filter(Boolean) as GalleryImage[];
+  const storyImages = getStoryImages(storySourceImages);
 
   return (
     <Container maxW="960px" py={{ base: 8, md: 12 }} mx="auto" w="full">
@@ -97,7 +109,6 @@ export default async function AboutPage() {
               as="h1"
               fontSize={{ base: "3xl", md: "4xl" }}
               color="black"
-              fontFamily="var(--font-anta), Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
             >
               {about.hero?.title ?? "About Us..."}
             </Heading>
@@ -112,7 +123,7 @@ export default async function AboutPage() {
             as="section"
             w="full"
             borderWidth="1px"
-            borderColor="rgba(0, 0, 0, 0.35)"
+            borderColor="aboutSectionBorder"
             borderRadius="xl"
             boxShadow="md"
             px={{ base: 5, md: 10 }}
@@ -123,7 +134,6 @@ export default async function AboutPage() {
                 as="h2"
                 fontSize={{ base: "2xl", md: "4xl" }}
                 color="gray.900"
-                fontFamily="var(--font-anta), Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
               >
                 {about.mission?.title}
               </Heading>
@@ -145,7 +155,6 @@ export default async function AboutPage() {
                   as="h2"
                   fontSize={{ base: "2xl", md: "3xl" }}
                   color="gray.900"
-                  fontFamily="var(--font-anta), Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
                 >
                   {about.story?.title}
                 </Heading>
@@ -154,61 +163,63 @@ export default async function AboutPage() {
                 </Text>
               </Stack>
 
-              <Box
-                display="grid"
-                gridTemplateColumns="repeat(2, minmax(0, 1fr))"
-                gridTemplateRows="repeat(2, minmax(0, 1fr))"
-                gap={3}
-                h={{ base: "260px", md: "320px" }}
-              >
+              {storyImages ? (
                 <Box
-                  gridColumn="span 1"
-                  borderRadius="lg"
-                  overflow="hidden"
-                  boxShadow="md"
-                  borderWidth="1px"
-                  borderColor="rgba(60, 19, 0, 0.12)"
+                  display="grid"
+                  gridTemplateColumns="repeat(2, minmax(0, 1fr))"
+                  gridTemplateRows="repeat(2, minmax(0, 1fr))"
+                  gap={3}
+                  h={{ base: "260px", md: "320px" }}
                 >
-                  <Image
-                    src={storyImages[0]?.src}
-                    alt={storyImages[0]?.alt ?? "UMOJA story photo"}
-                    w="full"
-                    h="full"
-                    objectFit="cover"
-                  />
+                  <Box
+                    gridColumn="span 1"
+                    borderRadius="lg"
+                    overflow="hidden"
+                    boxShadow="md"
+                    borderWidth="1px"
+                    borderColor="rgba(60, 19, 0, 0.12)"
+                  >
+                    <Image
+                      src={storyImages[0].src}
+                      alt={storyImages[0].alt}
+                      w="full"
+                      h="full"
+                      objectFit="cover"
+                    />
+                  </Box>
+                  <Box
+                    gridRow="span 2"
+                    borderRadius="lg"
+                    overflow="hidden"
+                    boxShadow="md"
+                    borderWidth="1px"
+                    borderColor="rgba(60, 19, 0, 0.12)"
+                  >
+                    <Image
+                      src={storyImages[1].src}
+                      alt={storyImages[1].alt}
+                      w="full"
+                      h="full"
+                      objectFit="cover"
+                    />
+                  </Box>
+                  <Box
+                    borderRadius="lg"
+                    overflow="hidden"
+                    boxShadow="md"
+                    borderWidth="1px"
+                    borderColor="rgba(60, 19, 0, 0.12)"
+                  >
+                    <Image
+                      src={storyImages[2].src}
+                      alt={storyImages[2].alt}
+                      w="full"
+                      h="full"
+                      objectFit="cover"
+                    />
+                  </Box>
                 </Box>
-                <Box
-                  gridRow="span 2"
-                  borderRadius="lg"
-                  overflow="hidden"
-                  boxShadow="md"
-                  borderWidth="1px"
-                  borderColor="rgba(60, 19, 0, 0.12)"
-                >
-                  <Image
-                    src={storyImages[1]?.src}
-                    alt={storyImages[1]?.alt ?? "UMOJA basketball photo"}
-                    w="full"
-                    h="full"
-                    objectFit="cover"
-                  />
-                </Box>
-                <Box
-                  borderRadius="lg"
-                  overflow="hidden"
-                  boxShadow="md"
-                  borderWidth="1px"
-                  borderColor="rgba(60, 19, 0, 0.12)"
-                >
-                  <Image
-                    src={storyImages[2]?.src}
-                    alt={storyImages[2]?.alt ?? "UMOJA community photo"}
-                    w="full"
-                    h="full"
-                    objectFit="cover"
-                  />
-                </Box>
-              </Box>
+              ) : null}
             </SimpleGrid>
           </Box>
 
@@ -218,7 +229,6 @@ export default async function AboutPage() {
                 as="h2"
                 fontSize={{ base: "2xl", md: "3xl" }}
                 color="black"
-                fontFamily="var(--font-anta), Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
               >
                 {about.team?.title}
               </Heading>
@@ -236,7 +246,7 @@ export default async function AboutPage() {
               w="full"
               alignItems="start"
             >
-              {(team.members ?? []).slice(0, 3).map((member) => (
+              {(team.members ?? []).map((member) => (
                 <TeamCard
                   key={member.name}
                   name={member.name}

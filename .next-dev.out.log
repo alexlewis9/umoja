@@ -1,0 +1,30 @@
+
+> umoja@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.68.85:3000
+
+✓ Starting...
+Creating turbopack project { dir: 'C:\\UMOJA\\umoja', testMode: true }
+✓ Ready in 1286ms
+ GET /contact 200 in 3.0s (compile: 2.6s, render: 486ms)
+ GET /test-pages/contact 200 in 546ms (compile: 433ms, render: 113ms)
+✓ Compiled in 366ms
+✓ Compiled in 452ms
+✓ Compiled in 203ms
+✓ Compiled in 425ms
+✓ Compiled in 118ms
+ GET /test-pages/contact 200 in 610ms (compile: 157ms, render: 453ms)
+✓ Compiled in 960ms
+✓ Compiled in 274ms
+ GET /test-pages/contact 200 in 66ms (compile: 25ms, render: 40ms)
+ GET /test-pages/contact 200 in 479ms (compile: 39ms, render: 440ms)
+ GET /test-pages/contact 200 in 553ms (compile: 8ms, render: 545ms)
+ GET /test-pages/contact 200 in 800ms (compile: 200ms, render: 599ms)
+ GET /test-pages/contact 200 in 488ms (compile: 7ms, render: 481ms)
+ GET /test-pages/contact 404 in 663ms (compile: 116ms, render: 547ms)
+ GET /test-pages/contact 404 in 58ms (compile: 10ms, render: 48ms)
+ GET /test-pages/contact 404 in 508ms (compile: 9ms, render: 499ms)
+ GET /test-pages/contact 404 in 481ms (compile: 6ms, render: 474ms)
