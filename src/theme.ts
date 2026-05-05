@@ -6,6 +6,7 @@ const config = defineConfig({
       colors: {
         brand: {
           maroon: { value: "#3C1300" },
+          russet: { value: "#6d220f" },
         },
       },
       fonts: {
@@ -22,6 +23,7 @@ const config = defineConfig({
         brandBannerGradient: {
           value: "linear-gradient(90deg, #431b07 41%, #823207 100%)",
         },
+        footerBg: { value: "{colors.brand.russet}" },
       },
     },
   },

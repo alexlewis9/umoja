@@ -2,7 +2,6 @@ import {
     Box,
     Container,
     Flex,
-    Heading,
     Image,
     Link,
     SimpleGrid,
@@ -19,13 +18,13 @@ const linkGroups = [
             { href: "/about", label: "About" },
             { href: "/events", label: "Events" },
             { href: "/registration", label: "Registration" },
+            { href: "/photos", label: "Photos" },
         ],
     },
     {
         heading: "Support",
         links: [
             { href: "/resources", label: "Resources" },
-            { href: "/photos", label: "Photos" },
             { href: "/faqs", label: "FAQs" },
             { href: "/contact", label: "Contact" },
         ],
@@ -37,7 +36,7 @@ export default function Footer() {
         <Box
             as="footer"
             width="100%"
-            bg="#6d220f"
+            bg="footerBg"
             color="white"
             borderTop="1px solid"
             borderColor="rgba(255,255,255,0.08)"
@@ -67,7 +66,7 @@ export default function Footer() {
                             <Image
                                 src="/umoja_logo_new.jpg"
                                 alt="Umoja Academy logo"
-                                width={{ base: "220px", md: "270px" }}
+                                width={{ base: "170px", md: "215px" }}
                                 height="auto"
                                 objectFit="contain"
                                 borderRadius="md"
@@ -99,16 +98,18 @@ export default function Footer() {
                                     {group.heading}
                                 </Text>
                                 {group.links.map((link) => (
-                                    <NextLink key={link.href} href={link.href}>
-                                        <Text
-                                            fontSize="17px"
-                                            color="rgba(255,255,255,0.88)"
-                                            transition="color 0.2s ease"
-                                            _hover={{ color: "#f4b699" }}
-                                        >
+                                    <Link
+                                        asChild
+                                        key={link.href}
+                                        fontSize="17px"
+                                        color="rgba(255,255,255,0.88)"
+                                        transition="color 0.2s ease"
+                                        _hover={{ color: "#f4b699" }}
+                                    >
+                                        <NextLink href={link.href}>
                                             {link.label}
-                                        </Text>
-                                    </NextLink>
+                                        </NextLink>
+                                    </Link>
                                 ))}
                             </VStack>
                         ))}
@@ -188,37 +189,4 @@ export default function Footer() {
         </Box>
     );
 
-}
-
-export function FooterTestPage() {
-    return (
-        <Box minH="100vh" bg="#f7f1ec">
-            <Container maxW="container.lg" py={{ base: 12, md: 20 }}>
-                <VStack align="stretch" gap={6}>
-                    <Heading as="h1" size="2xl" color="#60220e">
-                        Footer Test Page
-                    </Heading>
-                    <Text fontSize="lg" color="#4a3a31" maxW="3xl">
-                        Use this route to review the footer layout, spacing, icons, and
-                        responsive behavior without depending on the rest of the site.
-                    </Text>
-                    <Box
-                        minH={{ base: "40vh", md: "50vh" }}
-                        borderRadius="2xl"
-                        border="1px solid"
-                        borderColor="#d8c2b7"
-                        bg="white"
-                        px={{ base: 6, md: 10 }}
-                        py={{ base: 8, md: 12 }}
-                    >
-                        <Text fontSize="md" color="#6b4d41" maxW="2xl">
-                            Scroll to the footer below to validate how it sits at the bottom
-                            of a typical page and how it behaves across breakpoints.
-                        </Text>
-                    </Box>
-                </VStack>
-            </Container>
-            <Footer />
-        </Box>
-    );
 }
