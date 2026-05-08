@@ -1,0 +1,19 @@
+title: "Events"
+description: "This is the Events page skeleton. A list + filters will be added later."
+
+events:
+  - title: "Sample Event (replace later)"
+    date: "Feb 21, 2026"
+    time: "6:00 PM"
+    location: "Durham College Gym"
+    description: "TODO: Replace with real event copy from data source."
+    status: "upcoming"
+    registrationUrl: ""
+
+  - title: "Sample Event (replace later)"
+    date: "Mar 3, 2026"
+    time: "5:30 PM"
+    location: "Community Center"
+    description: "TODO: Replace with real event copy from data source."
+    status: "upcoming"
+    registrationUrl: ""
