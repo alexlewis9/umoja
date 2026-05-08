@@ -5,6 +5,10 @@ const config = defineConfig({
     tokens: {
       colors: {
         brand: {
+          primary: { value: "#8B3A0E" },
+          primaryHover: { value: "#74310C" },
+          primaryActive: { value: "#5E2709" },
+
           maroon: { value: "#3C1300" },
           russet: { value: "#6d220f" },
           contactBrown: { value: "#4f1a05" },
@@ -46,7 +50,9 @@ const config = defineConfig({
         contactSurface: { value: "{colors.brand.contactSurface}" },
         contactFieldBg: { value: "{colors.brand.contactFieldBg}" },
         contactFieldBorder: { value: "{colors.brand.contactFieldBorder}" },
-        contactFieldPlaceholder: { value: "{colors.brand.contactFieldPlaceholder}" },
+        contactFieldPlaceholder: {
+          value: "{colors.brand.contactFieldPlaceholder}",
+        },
         contactFieldFocusBg: { value: "{colors.brand.contactFieldFocusBg}" },
         contactHeadingAccent: { value: "{colors.brand.contactHeadingAccent}" },
         contactFormBorder: { value: "rgba(255, 255, 255, 0.18)" },
