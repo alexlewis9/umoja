@@ -1,208 +1,164 @@
 "use client";
 
-import { Badge, Box, Button, HStack, Heading, Stack, Text } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
-import { AppButton } from "@/components/Button/Button";
-
-export type EventStatus = "upcoming" | "ongoing" | "past";
+import {
+  Badge,
+  Box,
+  Button,
+  HStack,
+  Link,
+  Stack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 
 export type EventItem = {
-  id: string;
   title: string;
   date: string;
   time?: string;
   location: string;
-  description?: string;
-  status?: EventStatus;
+  description: string;
+  status: "all" | "upcoming" | "ongoing" | "past";
   registrationUrl?: string;
-};
-
-const STATUS_COLOR: Record<EventStatus, string> = {
-  upcoming: "green",
-  ongoing: "blue",
-  past: "gray",
 };
 
 type Filter = "all" | "upcoming" | "ongoing" | "past";
 
-const SAMPLE_EVENTS: EventItem[] = [
-  {
-    id: "sample-1",
-    title: "Sample Event (replace later)",
-    date: "Feb 21, 2026",
-    time: "6:00 PM",
-    location: "Durham College Gym",
-    description: "TODO: Replace with real event copy from data source.",
-    status: "upcoming",
-    registrationUrl: "", //TODO
-  },
-  {
-    id: "sample-2",
-    title: "Sample Event (replace later)",
-    date: "Mar 3, 2026",
-    time: "5:30 PM",
-    location: "Community Center",
-    description: "TODO: Replace with real event copy from data source.",
-    status: "upcoming",
-    registrationUrl: "", //TODO
-  },
-];
+type EventsTableProps = {
+  events: EventItem[];
+};
 
-
-export function EventsTable({
-  events,
-  maxW = "720px",
-}: {
-  events?: EventItem[];
-  maxW?: string | number;
-}) {
+export function EventsTable({ events }: EventsTableProps) {
   const [filter, setFilter] = useState<Filter>("all");
 
-  // Sample placeholder events
-  const data = useMemo<EventItem[]>(
-    () => (events && events.length > 0 ? events : SAMPLE_EVENTS),
-    [events]
-  );
+  const filteredEvents = useMemo(() => {
+    if (filter === "all") {
+      return events;
+    }
 
-  const filtered = useMemo(() => {
-    if (filter === "all") return data;
-    return data.filter((e) => (e.status ?? "upcoming") === filter);
-  }, [data, filter]);
+    return events.filter((event) => event.status === filter);
+  }, [events, filter]);
 
   return (
-    <Box maxW={maxW}>
-      {/* Filters */}
-      <HStack gap={2} mb={6} flexWrap="wrap">
-        <FilterButton active={filter === "all"} onClick={() => setFilter("all")}>
-          All
-        </FilterButton>
-        <FilterButton
-          active={filter === "upcoming"}
-          onClick={() => setFilter("upcoming")}
-        >
-          Upcoming
-        </FilterButton>
-        <FilterButton active={filter === "ongoing"} onClick={() => setFilter("ongoing")}>
-          Ongoing
-        </FilterButton>
-        <FilterButton active={filter === "past"} onClick={() => setFilter("past")}>
-          Past
-        </FilterButton>
-      </HStack>
-
-      {/* List */}
-      <Stack gap={6}>
-        {filtered.length === 0 ? (
-          <Box
-            bg="white"
-            borderWidth="1px"
-            borderColor="gray.200"
-            borderRadius="xl"
-            p={{ base: 6, md: 10 }}
-            shadow="md"
+    <VStack align="stretch" gap={6}>
+      <VStack align="stretch" gap={2}>
+        <HStack gap={3} flexWrap="wrap">
+          <Button
+            borderRadius="full"
+            colorScheme={filter === "all" ? "gray" : undefined}
+            variant={filter === "all" ? "solid" : "outline"}
+            onClick={() => setFilter("all")}
           >
-            <Heading as="h3" size="md" mb={2} color="gray.900">
-              No events to show
-            </Heading>
-            <Text color="gray.600">Try a different filter.</Text>
-          </Box>
-        ) : (
-          filtered.map((e) => <EventRow key={e.id} event={e} />)
-        )}
-      </Stack>
-    </Box>
-  );
-}
+            All
+          </Button>
 
-function FilterButton({
-  active,
-  children,
-  onClick,
-}: {
-  active: boolean;
-  children: React.ReactNode;
-  onClick: () => void;
-}) {
-  return (
-    <Button
-      size="sm"
-      onClick={onClick}
-      bg={active ? "whiteAlpha.300" : "whiteAlpha.100"}
-      _hover={{ bg: "whiteAlpha.200" }}
-      borderWidth="1px"
-      borderColor={active ? "whiteAlpha.400" : "whiteAlpha.200"}
-      color="white"
-      fontWeight={600}
-      borderRadius="full"
-    >
-      {children}
-    </Button>
-  );
-}
+          <Button
+            borderRadius="full"
+            colorScheme={filter === "upcoming" ? "gray" : undefined}
+            variant={filter === "upcoming" ? "solid" : "outline"}
+            onClick={() => setFilter("upcoming")}
+          >
+            Upcoming
+          </Button>
 
-function EventRow({ event }: { event: EventItem }) {
-  const status: EventStatus = event.status ?? "upcoming";
-  const badgeColor = STATUS_COLOR[status];
+          <Button
+            borderRadius="full"
+            colorScheme={filter === "ongoing" ? "gray" : undefined}
+            variant={filter === "ongoing" ? "solid" : "outline"}
+            onClick={() => setFilter("ongoing")}
+          >
+            Ongoing
+          </Button>
 
-  return (
-    <Box
-      bg="white"
-      borderWidth="1px"
-      borderColor="gray.200"
-      borderRadius="xl"
-      p={{ base: 5, md: 6 }}
-      shadow="md"
-    >
-      <Stack gap={4}>
-        <HStack justify="space-between" align="start">
-          <Heading as="h3" size="md" color="gray.900">
-            {event.title}
-          </Heading>
-          <Badge colorScheme={badgeColor} fontSize="sm" textTransform="capitalize">
-            {status}
-          </Badge>
+          <Button
+            borderRadius="full"
+            colorScheme={filter === "past" ? "gray" : undefined}
+            variant={filter === "past" ? "solid" : "outline"}
+            onClick={() => setFilter("past")}
+          >
+            Past
+          </Button>
         </HStack>
 
-        <Text fontSize="sm" color="gray.600">
-          📅 {event.date}
-          {event.time ? ` • ${event.time}` : ""}
+        <Text fontSize="sm" color="gray.500">
+          Filters are placeholder UI for now and are not final.
         </Text>
+      </VStack>
 
-        <Text fontSize="sm" color="gray.600">
-          📍 {event.location}
-        </Text>
-
-        {event.description ? (
-          <Text
-            color="gray.700"
-            style={{
-              display: "-webkit-box",
-              WebkitLineClamp: 3,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-            }}
-          >
-            {event.description}
-          </Text>
-        ) : null}
-
-        <HStack justify="flex-end">
-          {event.registrationUrl && event.registrationUrl.trim() !== "" ? (
-            <AppButton
-              size="sm"
-              onClick={() => {
-                window.open(event.registrationUrl, "_blank", "noopener,noreferrer");
-              }}
+      {filteredEvents.length > 0 ? (
+        <VStack align="stretch" gap={6}>
+          {filteredEvents.map((event) => (
+            <Box
+              key={`${event.title}-${event.date}-${event.location}`}
+              bg="white"
+              borderWidth="1px"
+              borderColor="gray.200"
+              borderRadius="xl"
+              p={{ base: 6, md: 8 }}
+              shadow="md"
             >
-              Register
-            </AppButton>
-          ) : (
-            <Text fontSize="sm" color="gray.500">
-              TODO: Add registration URL
-            </Text>
-          )}
-        </HStack>
-      </Stack>
-    </Box>
+              <Stack gap={4}>
+                <HStack justify="space-between" align="start" flexWrap="wrap">
+                  <Text fontSize="2xl" fontWeight="700" color="gray.900">
+                    {event.title}
+                  </Text>
+
+                  <Badge
+                    colorScheme={
+                      event.status === "upcoming"
+                        ? "green"
+                        : event.status === "ongoing"
+                          ? "blue"
+                          : "gray"
+                    }
+                    fontSize="sm"
+                    textTransform="capitalize"
+                  >
+                    {event.status}
+                  </Badge>
+                </HStack>
+
+                <Text color="gray.600">
+                  📅 {event.date}
+                  {event.time ? ` • ${event.time}` : ""}
+                </Text>
+
+                <Text color="gray.600">📍 {event.location}</Text>
+
+                <Text color="gray.700">{event.description}</Text>
+
+                {event.registrationUrl ? (
+                  <Link
+                    href={event.registrationUrl}
+                    color="blue.500"
+                    textDecoration="underline"
+                    target="_blank"
+                    rel="noreferrer"
+                    width="fit-content"
+                  >
+                    Register
+                  </Link>
+                ) : (
+                  <Text fontSize="sm" color="gray.500">
+                    TODO: Add registration URL
+                  </Text>
+                )}
+              </Stack>
+            </Box>
+          ))}
+        </VStack>
+      ) : (
+        <Box
+          bg="white"
+          borderWidth="1px"
+          borderColor="gray.200"
+          borderRadius="xl"
+          p={{ base: 6, md: 8 }}
+          shadow="md"
+        >
+          <Text color="gray.600">No events match this filter yet.</Text>
+        </Box>
+      )}
+    </VStack>
   );
 }
