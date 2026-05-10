@@ -20,7 +20,8 @@ export default function TeamCard({
 
   return (
     <Box
-      w={{ base: "full", sm: "xs" }}
+      w="full"
+      maxW="320px"
       bg="bg.surface"
       borderRadius="xl"
       borderWidth="1px"
@@ -35,23 +36,23 @@ export default function TeamCard({
       <Box
         position="relative"
         p={6}
-        pt={{ base: 24, md: 24 }}
+        pt={{ base: 20, md: 20 }}
         textAlign="center"
       >
         <Box
           position="absolute"
-          top="-24"
+          top="-20"
           left="50%"
           transform="translateX(-50%)"
-          w="30"
-          h="30"
+          w={{ base: "24", md: "28" }}
+          h={{ base: "24", md: "28" }}
           borderRadius="full"
           borderWidth="4px"
           borderColor="bg.surface"
           boxShadow="lg"
           overflow="hidden"
         >
-          <Image src={avatarSrc} alt={avatarAlt} />
+          <Image src={avatarSrc} alt={avatarAlt} w="full" h="full" objectFit="cover" />
         </Box>
 
         <Heading as="h3" size="md" color="gray.800">
