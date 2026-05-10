@@ -36,7 +36,7 @@ export default function Footer() {
         <Box
             as="footer"
             width="100%"
-            bg="footerBg"
+            bg="brand.russet"
             color="white"
             borderTop="1px solid"
             borderColor="rgba(255,255,255,0.08)"
