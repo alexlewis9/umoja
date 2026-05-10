@@ -12,12 +12,7 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
-
-const contactEmail = "info@durham1.ca";
-const footerBrown = "#4f1a05";
-const footerBrownDark = "#2b0d01";
-const accentOrange = "#9f3e0d";
-const warmSurface = "#fff8f1";
+import { buildContactMailto } from "./contactMailto";
 
 function FieldLabel({
   children,
@@ -32,12 +27,12 @@ function FieldLabel({
       display="block"
       fontSize={{ base: "14px", md: "15px" }}
       fontWeight="700"
-      color={footerBrownDark}
+      color="contactTextStrong"
       mb={1}
     >
       {children}
       {required ? (
-        <Text as="span" color={accentOrange} ml={1}>
+        <Text as="span" color="contactAccent" ml={1}>
           *
         </Text>
       ) : null}
@@ -46,19 +41,19 @@ function FieldLabel({
 }
 
 const fieldStyles = {
-  bg: "#f4eee8",
+  bg: "contactFieldBg",
   border: "0",
   borderBottom: "1px solid",
-  borderBottomColor: "#b27857",
+  borderBottomColor: "contactFieldBorder",
   borderRadius: "0",
-  color: footerBrownDark,
+  color: "contactTextStrong",
   fontSize: "14px",
   px: 4,
-  _placeholder: { color: "#9b8172" },
+  _placeholder: { color: "contactFieldPlaceholder" },
   _focusVisible: {
-    bg: "#fffaf5",
-    borderBottomColor: accentOrange,
-    boxShadow: `0 1px 0 ${accentOrange}`,
+    bg: "contactFieldFocusBg",
+    borderBottomColor: "contactAccent",
+    boxShadow: "contactFieldFocus",
     outline: "none",
   },
 };
@@ -73,28 +68,17 @@ export default function ContactPage() {
     const email = String(formData.get("email") || "").trim();
     const message = String(formData.get("message") || "").trim();
 
-    const subject = `Contact request from ${name || "DurhamONE website"}`;
-    const body = [
-      `Name: ${name}`,
-      `Phone: ${phone || "Not provided"}`,
-      `Email: ${email}`,
-      "",
-      "Message:",
-      message,
-    ].join("\n");
-
-    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
+    window.location.href = buildContactMailto({ name, phone, email, message });
   }
 
   return (
     <Box
       as="main"
-      bg={footerBrown}
+      bg="contactPageBg"
       color="white"
       minH="100vh"
-      borderBottom="20px solid #000000"
+      borderBottom="20px solid"
+      borderBottomColor="black"
     >
       <Container maxW="1120px" px={{ base: 5, md: 8 }} py={{ base: 12, md: 16 }}>
         <Grid
@@ -105,9 +89,10 @@ export default function ContactPage() {
           <Box
             as="form"
             onSubmit={handleSubmit}
-            bg={warmSurface}
-            boxShadow="0 20px 44px rgba(0, 0, 0, 0.32)"
-            border="1px solid rgba(255, 255, 255, 0.18)"
+            bg="contactSurface"
+            boxShadow="contactForm"
+            border="1px solid"
+            borderColor="contactFormBorder"
             borderRadius="2px"
             px={{ base: 6, md: 8 }}
             py={{ base: 7, md: 9 }}
@@ -163,17 +148,17 @@ export default function ContactPage() {
 
               <Button
                 type="submit"
-                bg={accentOrange}
-                color="#ffffff"
+                bg="contactAccent"
+                color="white"
                 borderRadius="0"
                 h="46px"
                 mt={2}
                 fontSize="17px"
                 fontWeight="700"
                 letterSpacing="0.02em"
-                boxShadow="0 10px 22px rgba(79, 26, 5, 0.22)"
-                _hover={{ bg: "#b95518" }}
-                _active={{ bg: footerBrownDark }}
+                boxShadow="contactButton"
+                _hover={{ bg: "contactAccentHover" }}
+                _active={{ bg: "contactTextStrong" }}
               >
                 Send
               </Button>
@@ -186,7 +171,7 @@ export default function ContactPage() {
               fontSize={{ base: "40px", md: "48px" }}
               lineHeight="1.05"
               fontWeight="700"
-              color="#ffffff"
+              color="white"
               mb={5}
             >
               Contact Us
@@ -196,7 +181,7 @@ export default function ContactPage() {
               fontSize={{ base: "24px", md: "27px" }}
               lineHeight="0.98"
               fontWeight="700"
-              color="#f5c5a6"
+              color="contactHeadingAccent"
               maxW="390px"
               mb={5}
             >
@@ -205,7 +190,7 @@ export default function ContactPage() {
             <Text
               fontSize={{ base: "16px", md: "17px" }}
               lineHeight="1.38"
-              color="rgba(255, 255, 255, 0.88)"
+              color="contactBodyText"
               maxW="450px"
             >
               Thank you for contacting DurhamONE. In order to respond to your
