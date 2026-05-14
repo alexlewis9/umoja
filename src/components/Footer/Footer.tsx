@@ -9,29 +9,37 @@ import {
     VStack,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
+import path from "path";
+import { loadYaml } from "@/lib/loadYaml";
 
-const linkGroups = [
-    {
-        heading: "Explore",
-        links: [
-            { href: "/", label: "Home" },
-            { href: "/about", label: "About" },
-            { href: "/events", label: "Events" },
-            { href: "/registration", label: "Registration" },
-            { href: "/photos", label: "Photos" },
-        ],
-    },
-    {
-        heading: "Support",
-        links: [
-            { href: "/resources", label: "Resources" },
-            { href: "/faqs", label: "FAQs" },
-            { href: "/contact", label: "Contact" },
-        ],
-    },
-];
+type FooterContent = {
+    logo: {
+        src: string;
+        alt: string;
+    };
+    description: string;
+    linkGroups: Array<{
+        heading: string;
+        links: Array<{
+            href: string;
+            label: string;
+        }>;
+    }>;
+    contact: {
+        heading: string;
+        links: Array<{
+            href: string;
+            iconSrc: string;
+            label: string;
+        }>;
+    };
+    copyright: string;
+};
 
-export default function Footer() {
+export default async function Footer() {
+    const footerPath = path.join(process.cwd(), "src/content/footer.yaml");
+    const footer = (await loadYaml(footerPath)) as FooterContent;
+
     return (
         <Box
             as="footer"
@@ -65,8 +73,8 @@ export default function Footer() {
                             width="fit-content"
                         >
                             <Image
-                                src="/umoja_logo_new.jpg"
-                                alt="Umoja Academy logo"
+                                src={footer.logo.src}
+                                alt={footer.logo.alt}
                                 width={{ base: "170px", md: "215px" }}
                                 height="auto"
                                 objectFit="contain"
@@ -82,7 +90,7 @@ export default function Footer() {
                         minW={{ lg: "0" }}
                         pt={{ lg: 1 }}
                     >
-                        {linkGroups.map((group) => (
+                        {footer.linkGroups.map((group) => (
                             <VStack
                                 key={group.heading}
                                 align={{ base: "center", md: "flex-start" }}
@@ -131,49 +139,27 @@ export default function Footer() {
                             letterSpacing="0.18em"
                             color="footerHeading"
                         >
-                            Connect
+                            {footer.contact.heading}
                         </Text>
                         <Flex justifyContent="center" alignItems="center" gap={3} wrap="wrap">
-                            <Link
-                                href="mailto:info@durham1.ca"
-                                p={3}
-                                borderRadius="full"
-                                bg="footerIconBg"
-                                border="1px solid"
-                                borderColor="footerIconBorder"
-                                transition="background 0.2s ease, transform 0.2s ease, border-color 0.2s ease"
-                                _hover={{ bg: "footerIconBgHover", transform: "translateY(-1px)", borderColor: "footerIconBorderHover" }}
-                            >
-                                <Image height="26px" width="26px" src="/mail-icon.svg" alt="email" />
-                            </Link>
-                            <Link
-                                href="tel:+12892003413"
-                                p={3}
-                                borderRadius="full"
-                                bg="footerIconBg"
-                                border="1px solid"
-                                borderColor="footerIconBorder"
-                                transition="background 0.2s ease, transform 0.2s ease, border-color 0.2s ease"
-                                _hover={{ bg: "footerIconBgHover", transform: "translateY(-1px)", borderColor: "footerIconBorderHover" }}
-                            >
-                                <Image height="26px" width="26px" src="/phone-icon.svg" alt="phone" />
-                            </Link>
-                            <Link
-                                href="https://www.instagram.com/durhamone/"
-                                p={3}
-                                borderRadius="full"
-                                bg="footerIconBg"
-                                border="1px solid"
-                                borderColor="footerIconBorder"
-                                transition="background 0.2s ease, transform 0.2s ease, border-color 0.2s ease"
-                                _hover={{ bg: "footerIconBgHover", transform: "translateY(-1px)", borderColor: "footerIconBorderHover" }}
-                            >
-                                <Image height="26px" width="26px" src="/instagram-icon.svg" alt="instagram" />
-                            </Link>
+                            {footer.contact.links.map((contactLink) => (
+                                <Link
+                                    key={contactLink.href}
+                                    href={contactLink.href}
+                                    p={3}
+                                    borderRadius="full"
+                                    bg="footerIconBg"
+                                    border="1px solid"
+                                    borderColor="footerIconBorder"
+                                    transition="background 0.2s ease, transform 0.2s ease, border-color 0.2s ease"
+                                    _hover={{ bg: "footerIconBgHover", transform: "translateY(-1px)", borderColor: "footerIconBorderHover" }}
+                                >
+                                    <Image height="26px" width="26px" src={contactLink.iconSrc} alt={contactLink.label} />
+                                </Link>
+                            ))}
                         </Flex>
                         <Text fontSize="15px" color="footerTextMuted" lineHeight="1.85" maxW="280px">
-                            Umoja has a goal to empower athletes and families through
-                            basketball, mentorship, and a stronger sense of community.
+                            {footer.description}
                         </Text>
                     </VStack>
                 </Flex>
@@ -188,7 +174,7 @@ export default function Footer() {
                 textAlign="center"
                 color="footerCopyrightText"
             >
-                <Text fontSize="14px">Copyright &copy; 2026 Umoja. All rights reserved.</Text>
+                <Text fontSize="14px">{footer.copyright}</Text>
             </Box>
         </Box>
     );
