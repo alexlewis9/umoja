@@ -36,10 +36,10 @@ export default function Footer() {
         <Box
             as="footer"
             width="100%"
-            bg="brand.russet"
-            color="white"
+            bg="footerBg"
+            color="footerText"
             borderTop="1px solid"
-            borderColor="rgba(255,255,255,0.08)"
+            borderColor="footerBorder"
         >
             <Container maxW="1200px" px={{ base: 6, md: 8 }} py={{ base: 10, md: 12 }}>
                 <Flex
@@ -56,11 +56,12 @@ export default function Footer() {
                         maxW={{ base: "100%", lg: "320px" }}
                     >
                         <Box
-                            bg="#120905"
+                            bg="footerLogoBg"
                             p={{ base: 4, md: 5 }}
                             borderRadius="2xl"
-                            boxShadow="0 18px 40px rgba(0,0,0,0.22)"
-                            border="1px solid rgba(255,255,255,0.06)"
+                            boxShadow="footerLogo"
+                            border="1px solid"
+                            borderColor="footerLogoBorder"
                             width="fit-content"
                         >
                             <Image
@@ -93,7 +94,7 @@ export default function Footer() {
                                     fontWeight="700"
                                     textTransform="uppercase"
                                     letterSpacing="0.18em"
-                                    color="#f0c5ae"
+                                    color="footerHeading"
                                 >
                                     {group.heading}
                                 </Text>
@@ -102,9 +103,9 @@ export default function Footer() {
                                         asChild
                                         key={link.href}
                                         fontSize="17px"
-                                        color="rgba(255,255,255,0.88)"
+                                        color="footerLink"
                                         transition="color 0.2s ease"
-                                        _hover={{ color: "#f4b699" }}
+                                        _hover={{ color: "footerLinkHover" }}
                                     >
                                         <NextLink href={link.href}>
                                             {link.label}
@@ -128,7 +129,7 @@ export default function Footer() {
                             fontWeight="700"
                             textTransform="uppercase"
                             letterSpacing="0.18em"
-                            color="#f0c5ae"
+                            color="footerHeading"
                         >
                             Connect
                         </Text>
@@ -137,10 +138,11 @@ export default function Footer() {
                                 href="mailto:info@durham1.ca"
                                 p={3}
                                 borderRadius="full"
-                                bg="rgba(255,255,255,0.08)"
-                                border="1px solid rgba(255,255,255,0.06)"
+                                bg="footerIconBg"
+                                border="1px solid"
+                                borderColor="footerIconBorder"
                                 transition="background 0.2s ease, transform 0.2s ease, border-color 0.2s ease"
-                                _hover={{ bg: "rgba(255,255,255,0.14)", transform: "translateY(-1px)", borderColor: "rgba(255,255,255,0.16)" }}
+                                _hover={{ bg: "footerIconBgHover", transform: "translateY(-1px)", borderColor: "footerIconBorderHover" }}
                             >
                                 <Image height="26px" width="26px" src="/mail-icon.svg" alt="email" />
                             </Link>
@@ -148,10 +150,11 @@ export default function Footer() {
                                 href="tel:+12892003413"
                                 p={3}
                                 borderRadius="full"
-                                bg="rgba(255,255,255,0.08)"
-                                border="1px solid rgba(255,255,255,0.06)"
+                                bg="footerIconBg"
+                                border="1px solid"
+                                borderColor="footerIconBorder"
                                 transition="background 0.2s ease, transform 0.2s ease, border-color 0.2s ease"
-                                _hover={{ bg: "rgba(255,255,255,0.14)", transform: "translateY(-1px)", borderColor: "rgba(255,255,255,0.16)" }}
+                                _hover={{ bg: "footerIconBgHover", transform: "translateY(-1px)", borderColor: "footerIconBorderHover" }}
                             >
                                 <Image height="26px" width="26px" src="/phone-icon.svg" alt="phone" />
                             </Link>
@@ -159,15 +162,16 @@ export default function Footer() {
                                 href="https://www.instagram.com/durhamone/"
                                 p={3}
                                 borderRadius="full"
-                                bg="rgba(255,255,255,0.08)"
-                                border="1px solid rgba(255,255,255,0.06)"
+                                bg="footerIconBg"
+                                border="1px solid"
+                                borderColor="footerIconBorder"
                                 transition="background 0.2s ease, transform 0.2s ease, border-color 0.2s ease"
-                                _hover={{ bg: "rgba(255,255,255,0.14)", transform: "translateY(-1px)", borderColor: "rgba(255,255,255,0.16)" }}
+                                _hover={{ bg: "footerIconBgHover", transform: "translateY(-1px)", borderColor: "footerIconBorderHover" }}
                             >
                                 <Image height="26px" width="26px" src="/instagram-icon.svg" alt="instagram" />
                             </Link>
                         </Flex>
-                        <Text fontSize="15px" color="rgba(255,255,255,0.74)" lineHeight="1.85" maxW="280px">
+                        <Text fontSize="15px" color="footerTextMuted" lineHeight="1.85" maxW="280px">
                             Umoja has a goal to empower athletes and families through
                             basketball, mentorship, and a stronger sense of community.
                         </Text>
@@ -176,13 +180,13 @@ export default function Footer() {
             </Container>
 
             <Box
-                bg="#000000"
+                bg="footerCopyrightBg"
                 borderTop="1px solid"
-                borderColor="rgba(255,255,255,0.08)"
+                borderColor="footerBorder"
                 px={6}
                 py={5}
                 textAlign="center"
-                color="rgba(255,255,255,0.62)"
+                color="footerCopyrightText"
             >
                 <Text fontSize="14px">Copyright &copy; 2026 Umoja. All rights reserved.</Text>
             </Box>
