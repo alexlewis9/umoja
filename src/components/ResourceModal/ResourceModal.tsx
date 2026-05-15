@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import { useEffect } from "react";
 import type { ReactNode } from "react";
 
@@ -19,7 +19,6 @@ export default function ResourceModal<TResource>({
   resource,
   onClose,
   renderDetailCard,
-  getResourceTitle,
   closeOnOverlayClick = true,
   closeOnEscape = true,
 }: ResourceModalProps<TResource>) {

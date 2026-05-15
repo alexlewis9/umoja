@@ -16,7 +16,7 @@ export default function ResourceClient({ resourceContent }: ResourceClientProps)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedResource, setSelectedResource] = useState<ResourceItem | null>(null);
   return (
-    <Container maxW="container.lg" py={{ base: 16, md: 24 }}>
+    <Container maxW="container.lg" py={{ base: 8, md: 12 }}>
       <Box as="main">
         <ResourceGrid
           resources={resourceContent || []}
