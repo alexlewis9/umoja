@@ -1,20 +1,23 @@
-import { Box, Flex, Heading, Image, Text, chakra } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Image, Text, chakra } from "@chakra-ui/react";
 import { RESOURCE_CARD_PLACEHOLDER_IMAGE_SRC } from "@/components/ResourceCard/resourceCardPlaceholder";
 
-type ResourceDetailCardProps = {
+type ResourceItem = {
   title: string;
   description: string;
   imageSrc?: string;
   imageAlt?: string;
+};
+
+type ResourceDetailCardProps = {
+  resource: ResourceItem;
   onClick?: () => void;
+  onClose: () => void;
 };
 
 export default function ResourceDetailCard({
-  title,
-  description,
-  imageSrc,
-  imageAlt = "",
+  resource,
   onClick,
+  onClose,
 }: ResourceDetailCardProps) {
   const content = (
     <>
@@ -24,7 +27,7 @@ export default function ResourceDetailCard({
         gap={8}
         px={{ base: 6, md: 12 }}
         py={{ base: 5, md: 7 }}
-        bg="orange.900"
+        bg="linear-gradient(145deg, #2b1206, #632504)"
       >
         <Heading
           as="h2"
@@ -33,7 +36,7 @@ export default function ResourceDetailCard({
           fontSize={{ base: "2xl", md: "2xl" }}
           lineHeight="shorter"
         >
-          {title}
+          {resource.title}
         </Heading>
 
         <Box
@@ -48,10 +51,10 @@ export default function ResourceDetailCard({
           flexShrink={0}
           p={4}
         >
-          {imageSrc ? (
+          {resource.imageSrc ? (
             <Image
-              src={imageSrc}
-              alt={imageAlt}
+              src={resource.imageSrc}
+              alt={resource.imageAlt}
               maxW="100%"
               maxH="100%"
               objectFit="contain"
@@ -79,7 +82,7 @@ export default function ResourceDetailCard({
 
       <Box px={{ base: 6, md: 12 }} py={{ base: 6, md: 8 }}>
         <Text fontSize={{ base: "sm", md: "lg" }} color="fg">
-          {description}
+          {resource.description}
         </Text>
       </Box>
     </>
@@ -112,5 +115,25 @@ export default function ResourceDetailCard({
     );
   }
 
-  return <Box {...baseProps}>{content}</Box>;
+  return (
+    <Box {...baseProps} position="relative">
+      <Button
+        position="absolute"
+        top={4}
+        right={4}
+        zIndex={1}
+        size="sm"
+        borderRadius="full"
+        bg="whiteAlpha.900"
+        color="blackAlpha.700"
+        p={1}
+        boxShadow="sm"
+        onClick={onClose}
+      >
+        Close
+      </Button>
+
+      {content}
+    </Box>
+  );
 }

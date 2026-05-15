@@ -8,7 +8,7 @@ export type ResourceModalProps<TResource> = {
   isOpen: boolean;
   resource: TResource | null;
   onClose: () => void;
-  renderDetailCard?: (resource: TResource) => ReactNode;
+  renderDetailCard?: (resource: TResource, onClose: () => void) => ReactNode;
   getResourceTitle?: (resource: TResource) => string;
   closeOnOverlayClick?: boolean;
   closeOnEscape?: boolean;
@@ -55,13 +55,11 @@ export default function ResourceModal<TResource>({
     return null;
   }
 
-  const title = getResourceTitle?.(resource) ?? "Resource Details";
-
   return (
     <Box
       position="fixed"
       inset={0}
-      bg="blackAlpha.600"
+      bg="whiteAlpha.700"
       zIndex="overlay"
       display="flex"
       alignItems="center"
@@ -78,39 +76,13 @@ export default function ResourceModal<TResource>({
       <Box
         w="full"
         maxW="3xl"
-        bg="bg.surface"
         borderRadius="xl"
-        boxShadow="xl"
-        borderWidth="1px"
-        borderColor="border"
         overflow="hidden"
         onClick={(event) => event.stopPropagation()}
       >
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-          px={{ base: 4, md: 6 }}
-          py={{ base: 3, md: 4 }}
-          borderBottomWidth="1px"
-          borderColor="border"
-        >
-          <Heading as="h2" size="md">
-            {title}
-          </Heading>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={onClose}
-            aria-label="Close resource modal"
-          >
-            Close
-          </Button>
-        </Box>
-
         <Box p={{ base: 4, md: 6 }}>
           {renderDetailCard ? (
-            renderDetailCard(resource)
+            renderDetailCard(resource, onClose)
           ) : (
             <Box
               borderWidth="1px"

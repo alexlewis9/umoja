@@ -52,7 +52,7 @@ export default function ResourceGrid<TResource>({
           },
         }}
       >
-        <SimpleGrid columns={columns} gap={{ base: 4, md: 6 }}>
+        <SimpleGrid columns={columns} gap={{ base: 4, md: 6 }} justifyItems="center">
           {resources.map((resource, index) => {
             const key = getResourceKey?.(resource, index) ?? index;
             const card = renderCard(resource);

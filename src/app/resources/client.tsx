@@ -5,11 +5,16 @@ import ResourceModal from "../../components/ResourceModal/ResourceModal";
 import ResourceDetailCard from "../../components/ResourceDetailCard/ResourceDetailCard";
 import { Box, Container } from "@chakra-ui/react";
 import { useState } from "react";
+import type { ResourceItem } from "./page";
+
+type ResourceClientProps = {
+  resourceContent?: ResourceItem[];
+};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function ResourceClient({ resourceContent }: any) {
+export default function ResourceClient({ resourceContent }: ResourceClientProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [selectedResource, setSelectedResource] = useState<any | null>(null);
+  const [selectedResource, setSelectedResource] = useState<ResourceItem | null>(null);
   return (
     <Container maxW="container.lg" py={{ base: 16, md: 24 }}>
       <Box as="main">
@@ -19,12 +24,9 @@ export default function ResourceClient({ resourceContent }: any) {
           columns={{ base: 1, sm: 2, md: 3 }}
           maxHeight="400px"
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          renderCard={(resource: any) => (
+          renderCard={(resource: ResourceItem) => (
             <ResourceCard
-              title={resource.title}
-              description={resource.description}
-              imageSrc={resource.imageSrc}
-              imageAlt={resource.imageAlt}
+              resource={resource}
             />
           )}
         />
@@ -33,12 +35,10 @@ export default function ResourceClient({ resourceContent }: any) {
             resource={selectedResource}
             onClose={() => setSelectedResource(null)}
             getResourceTitle={(resource) => resource.title}
-            renderDetailCard={(resource) => (
+            renderDetailCard={(resource, onClose) => (
                 <ResourceDetailCard
-                  title={resource.title}
-                  description={resource.description}
-                  imageSrc={resource.imageSrc}
-                  imageAlt={resource.imageAlt}
+                  resource={resource}
+                  onClose={onClose}
                 />
             )}
         />
