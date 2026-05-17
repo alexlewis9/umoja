@@ -9,6 +9,8 @@ import {
     VStack,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
+import path from "path";
+import { loadYaml } from "@/lib/loadYaml";
 
 const linkGroups = [
     {

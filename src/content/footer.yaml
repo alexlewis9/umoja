@@ -1,0 +1,40 @@
+logo:
+  src: /umoja_logo_new.jpg
+  alt: Umoja Academy logo
+description: >-
+  Umoja has a goal to empower athletes and families through basketball,
+  mentorship, and a stronger sense of community.
+linkGroups:
+  - heading: Explore
+    links:
+      - href: /
+        label: Home
+      - href: /about
+        label: About
+      - href: /events
+        label: Events
+      - href: /registration
+        label: Registration
+      - href: /photos
+        label: Photos
+  - heading: Support
+    links:
+      - href: /resources
+        label: Resources
+      - href: /faqs
+        label: FAQs
+      - href: /contact
+        label: Contact
+contact:
+  heading: Connect
+  links:
+    - href: mailto:info@durham1.ca
+      iconSrc: /mail-icon.svg
+      label: email
+    - href: tel:+12892003413
+      iconSrc: /phone-icon.svg
+      label: phone
+    - href: https://www.instagram.com/durhamone/
+      iconSrc: /instagram-icon.svg
+      label: instagram
+copyright: "Copyright \u00A9 2026 Umoja. All rights reserved."
