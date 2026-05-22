@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {
   Box,
   Container,
@@ -10,9 +9,6 @@ import {
 } from "@chakra-ui/react";
 import path from "path";
 import TeamCard from "@/components/TeamCard/TeamCard";
-=======
-import { Box, Container, Heading, Text, Stack, Separator } from "@chakra-ui/react";import path from "path";
->>>>>>> 6cafde9 (UMO-50: about page skeleton)
 import { loadYaml } from "@/lib/loadYaml";
 
 type AboutContent = {
@@ -97,7 +93,6 @@ export default async function AboutPage() {
   const storyImages = getStoryImages(storySourceImages);
 
   return (
-<<<<<<< HEAD
     <Container maxW="960px" py={{ base: 8, md: 12 }} mx="auto" w="full">
       <Box
         bg="white"
@@ -114,64 +109,6 @@ export default async function AboutPage() {
               as="h1"
               fontSize={{ base: "3xl", md: "4xl" }}
               color="black"
-=======
-    <Container maxW="container.lg" py={{ base: 16, md: 24 }}>
-      <Box as="main">
-        <Heading as="h1" size="2xl" mb={4}>
-          {about?.title ?? "About"}
-        </Heading>
-
-        <Text fontSize="lg" color="gray.600" maxW="3xl" mb={10}>
-          {about?.intro ??
-            "This is the About page skeleton. Content to be added."}
-        </Text>
-
-        <Stack gap={10} maxW="3xl">
-          {/* mission */}
-          <Box>
-            <Heading as="h2" size="lg" mb={3}>
-              {about?.missionTitle ?? "Our Mission"}
-            </Heading>
-            <Text color="gray.700">
-              {about?.missionBody ??
-                "TODO: Add mission text."}
-            </Text>
-          </Box>
-
-          <Separator my={10} />
-
-          {/* our story */}
-          <Box>
-            <Heading as="h2" size="lg" mb={3}>
-              {about?.storyTitle ?? "Our Story"}
-            </Heading>
-            <Text color="gray.700">
-              {about?.storyBody ??
-                "TODO: Add story."}
-            </Text>
-          </Box>
-
-          <Separator my={10} />
-
-          {/* meet our team */}
-          <Box>
-            <Heading as="h2" size="lg" mb={3}>
-              {about?.teamTitle ?? "Meet Our Team"}
-            </Heading>
-            <Text color="gray.700" mb={4}>
-              {about?.teamBody ??
-                "TODO: Add team section."}
-            </Text>
-
-            {/* TODO: Replace placeholder */}
-            <Box
-              bg="white"
-              borderWidth="1px"
-              borderColor="gray.200"
-              borderRadius="xl"
-              p={{ base: 6, md: 10 }}
-              shadow="md"
->>>>>>> 6cafde9 (UMO-50: about page skeleton)
             >
               {about.hero?.title ?? "About Us..."}
             </Heading>

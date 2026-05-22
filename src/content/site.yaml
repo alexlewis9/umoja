@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 home:
   whatWeOffer:
     heading: What We Offer
@@ -14,7 +13,7 @@ home:
   voices:
     heading: Voices of Our Community
     subtitle: Real stories from athletes, families, and partners.
-=======
+
 about:
   title: "About"
   intro: "This is the About page skeleton. Content to be added."
@@ -24,4 +23,3 @@ about:
   storyBody: "TODO: Add story."
   teamTitle: "Meet Our Team"
   teamBody: "TODO: Add team section."
->>>>>>> 82f0f59 (UMO:50 add mission/story/team sections)
