@@ -1,8 +1,9 @@
-import { Box, Container, Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Link, SimpleGrid, Stack } from "@chakra-ui/react";
+import NextLink from "next/link";
 import path from "path";
-import TestimonialCard from "@/components/TestimonialCard/TestimonialCard";
+import HomeOverview from "@/components/HomeOverview/HomeOverview";
 import WhatWeOfferCard from "@/components/WhatWeOfferCard/WhatWeOfferCard";
-import { loadYaml } from "../lib/loadYaml";
+import { loadYaml } from "@/lib/loadYaml";
 
 type OfferItem = {
   title: string;
@@ -15,95 +16,67 @@ type SiteContent = {
       heading?: string;
       items?: OfferItem[];
     };
-    voices?: {
-      heading?: string;
-      subtitle?: string;
-    };
   };
 };
 
-type TestimonialsContent = {
-  testimonials?: Array<{
-    quote: string;
-    name: string;
-    rating?: number;
+type AboutContent = {
+  mission?: {
+    content?: string;
+  };
+};
+
+type PhotoContent = {
+  items?: Array<{
+    type?: string;
+    src?: string;
+    alt?: string;
+    label?: string;
   }>;
 };
 
 export default async function Home() {
-  const sitePath = path.join(process.cwd(), "src/content/site.yaml");
-  const testimonialsPath = path.join(
-    process.cwd(),
-    "src/content/testimonials.yaml",
-  );
+  const contentPath = (fileName: string) =>
+    path.join(process.cwd(), "src/content", fileName);
 
-  const site = (await loadYaml(sitePath)) as SiteContent;
-  const testimonials = (await loadYaml(
-    testimonialsPath,
-  )) as TestimonialsContent;
+  const [site, about, photos] = await Promise.all([
+    loadYaml(contentPath("site.yaml")) as Promise<SiteContent>,
+    loadYaml(contentPath("about.yaml")) as Promise<AboutContent>,
+    loadYaml(contentPath("photos.yaml")) as Promise<PhotoContent>,
+  ]);
 
   const offer = site.home?.whatWeOffer;
-  const voices = site.home?.voices;
-  const testimonialItems = testimonials.testimonials ?? [];
 
   return (
-    <Container
-      maxW="container.xl"
-      py={{ base: 12, md: 20 }}
-      textAlign="center"
-      mx="auto"
-      w="full"
-    >
-      <Box as="section" mb={{ base: 12, md: 16 }}>
-        <Heading as="h2" size="3xl" color="black" mb={3}>
-          {offer?.heading}
-        </Heading>
-      </Box>
-      <Box as="section" mb={{ base: 12, md: 16 }}>
-        <SimpleGrid
-          columns={{ base: 1, md: 2, lg: 4 }}
-          gap={6}
-          justifyItems="center"
-        >
-          {(offer?.items ?? []).map((item) => (
-            <WhatWeOfferCard
-              key={item.title}
-              title={item.title}
-              description={item.description}
-              w="full"
-              maxW="sm"
-            />
-          ))}
-        </SimpleGrid>
-      </Box>
+    <Box bg="homePageBg" color="homeText">
+      <Container maxW="homePage" px="homePageX" py="homeSectionY">
+        <Stack gap="homeSectionY">
+          <HomeOverview missionContent={about.mission?.content} photos={photos.items} />
 
-      <Box as="section">
-        <SimpleGrid columns={{ base: 1, lg: 12 }} gap={8} alignItems="start">
-          <Box gridColumn={{ base: "span 1", lg: "span 4" }} textAlign="left">
-            <Heading as="h2" size="3xl" color="black" mb={3}>
-              {voices?.heading}
+          <Stack as="section" gap="homeSectionGap" textAlign="center">
+            <Heading as="h2" fontSize="homeSectionTitle" lineHeight="short" fontWeight="bold">
+              {offer?.heading ?? "What we offer"}
             </Heading>
-            <Text color="gray.600" fontSize="lg" maxW="md">
-              {voices?.subtitle}
-            </Text>
-          </Box>
-          <SimpleGrid
-            gridColumn={{ base: "span 1", lg: "span 8" }}
-            columns={{ base: 1, md: 2 }}
-            gap={4}
-            justifyItems="center"
-          >
-            {testimonialItems.map((testimonial) => (
-              <TestimonialCard
-                key={`${testimonial.name}-${testimonial.quote}`}
-                quote={testimonial.quote}
-                name={testimonial.name}
-                rating={testimonial.rating}
-              />
-            ))}
-          </SimpleGrid>
-        </SimpleGrid>
-      </Box>
-    </Container>
+            <SimpleGrid columns={{ base: 1, md: 2 }} gap="homeCardGap">
+              {(offer?.items ?? []).map((item) => (
+                <WhatWeOfferCard
+                  key={item.title}
+                  title={item.title}
+                  description={item.description}
+                  maxW="homeTodayImage"
+                  w="full"
+                  mx="auto"
+                />
+              ))}
+            </SimpleGrid>
+          </Stack>
+
+          <Flex justify="center" pt="homeSectionGap">
+            <Link asChild fontSize="homeLink" color="homeText" fontWeight="bold">
+              <NextLink href="/registration">Register with UMOJA</NextLink>
+            </Link>
+          </Flex>
+        </Stack>
+      </Container>
+    </Box>
   );
 }
