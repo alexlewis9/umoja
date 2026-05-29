@@ -1,8 +1,8 @@
 import { VStack } from "@chakra-ui/react";
-import { EventCard, type EventCardProps } from "@/components/EventCard/EventCard";
+import { EventCard, type EventItem } from "@/components/EventCard/EventCard";
 
 type EventsListProps = {
-  events: EventCardProps[];
+  events: EventItem[];
 };
 
 export function EventsList({ events }: EventsListProps) {
@@ -11,12 +11,7 @@ export function EventsList({ events }: EventsListProps) {
       {events.map((event) => (
         <EventCard
           key={`${event.title}-${event.date}-${event.location}`}
-          title={event.title}
-          date={event.date}
-          time={event.time}
-          location={event.location}
-          description={event.description}
-          status={event.status}
+          event={event}
         />
       ))}
     </VStack>

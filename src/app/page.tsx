@@ -4,14 +4,14 @@ import { loadYaml } from "@/lib/loadYaml";
 import { EventsFilters } from "@/components/EventsFilter/eventsfilter";
 import { EventsHero } from "@/components/EventsHero/eventshero";
 import { EventsList } from "@/components/EventsList/eventslist";
-import type { EventCardProps } from "@/components/EventCard/EventCard";
+import type { EventItem } from "@/components/EventCard/EventCard";
 
 type EventsContent = {
   title?: string;
   description?: string;
 };
 
-const SAMPLE_EVENTS: EventCardProps[] = [
+const SAMPLE_EVENTS: EventItem[] = [
   {
     title: "Sample Event (replace later)",
     date: "Feb 21, 2026",
