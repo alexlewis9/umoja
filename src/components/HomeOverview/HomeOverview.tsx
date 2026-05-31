@@ -12,21 +12,36 @@ import NextLink from "next/link";
 export type HomeOverviewPhoto = {
   type?: string;
   src?: string;
+  poster?: string;
   alt?: string;
   label?: string;
 };
 
+export type HomeOverviewContent = {
+  heroTitle?: string;
+  heroMedia?: HomeOverviewPhoto;
+  started?: {
+    heading?: string;
+    intro?: string;
+    body?: string;
+    banner?: HomeOverviewPhoto;
+  };
+  today?: {
+    heading?: string;
+    intro?: string;
+    body?: string;
+    galleryLinkLabel?: string;
+  };
+};
+
 type HomeOverviewProps = {
+  content?: HomeOverviewContent;
   photoGalleryHref?: string;
   missionContent?: string;
   photos?: HomeOverviewPhoto[];
 };
 
 const fallbackHeroImage = "/umoja_logo_new.jpg";
-const introCopy =
-  "General Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-const detailCopy =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 const todayImageSlots = ["today-photo-one", "today-photo-two", "today-photo-three"];
 
 function HomeImagePlaceholder({
@@ -56,23 +71,47 @@ function HomeImagePlaceholder({
 }
 
 export default function HomeOverview({
+  content,
   photoGalleryHref = "/photos",
   missionContent,
   photos = [],
 }: HomeOverviewProps) {
-  const imagePhotos = photos.filter((photo) => photo.src && photo.type !== "video");
-  const heroImage = imagePhotos[0];
+  const mediaPhotos = photos.filter((photo) => photo.src);
+  const fallbackHeroMedia = mediaPhotos[0];
+  const heroMedia = content?.heroMedia?.src ? content.heroMedia : fallbackHeroMedia;
+  const todayMedia = content?.heroMedia?.src
+    ? mediaPhotos
+    : mediaPhotos.filter((photo) => photo.src !== fallbackHeroMedia?.src);
+  const startedBody = content?.started?.body ?? missionContent;
 
   return (
     <Stack as="section" gap="homeSectionY" color="homeText" w="full">
-      <Box position="relative" h="homeHero" overflow="hidden" borderRadius="homeCard">
-        <Image
-          src={heroImage?.src ?? fallbackHeroImage}
-          alt={heroImage?.alt ?? "UMOJA hero placeholder"}
-          w="homeHeroImage"
-          h="homeHeroImage"
-          objectFit="cover"
-        />
+      <Box
+        position="relative"
+        h="homeHero"
+        w="full"
+        overflow="hidden"
+        borderRadius="homeCard"
+      >
+        {heroMedia?.type === "video" && heroMedia.src ? (
+          <video
+            src={heroMedia.src}
+            poster={heroMedia.poster}
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        ) : (
+          <Image
+            src={heroMedia?.src ?? fallbackHeroImage}
+            alt={heroMedia?.alt ?? "UMOJA hero placeholder"}
+            w="full"
+            h="full"
+            objectFit="cover"
+          />
+        )}
         <Box position="absolute" inset="homeOverlayInset" bg="homeHeroOverlay" />
         <Heading
           as="h1"
@@ -84,17 +123,17 @@ export default function HomeOverview({
           lineHeight="short"
           textShadow="homeHeroText"
         >
-          This is FAMILY. This is JOY. This is UMOJA.
+          {content?.heroTitle ?? "This is FAMILY. This is JOY. This is UMOJA."}
         </Heading>
       </Box>
 
       <Stack gap="homeSectionGap" textAlign="center">
         <Heading as="h2" fontSize="homeSectionTitle" lineHeight="short" fontWeight="bold">
-          How UMOJA started
+          {content?.started?.heading ?? "How UMOJA started"}
         </Heading>
         <SimpleGrid
           columns={{ base: 1, md: 2 }}
-          gap="homeCardInnerGap"
+          gap={{ base: "homeCardGap", md: 12 }}
           p="homeCardPadding"
           alignItems="center"
         >
@@ -106,39 +145,65 @@ export default function HomeOverview({
               lineHeight="tall"
               fontWeight="bold"
             >
-              {introCopy}
+              {content?.started?.intro}
             </Heading>
-            <Text fontSize="homeBody" color="homeMutedText" lineHeight="tall">
-              {missionContent ?? detailCopy}
-            </Text>
+            {startedBody ? (
+              <Text fontSize="homeBody" color="homeMutedText" lineHeight="tall">
+                {startedBody}
+              </Text>
+            ) : null}
           </Stack>
-          <Box maxW="homePromoImage" w="full" mx="auto">
-            <HomeImagePlaceholder height="homePromoHeight" label="Insert banner pic here" />
+          <Box maxW={{ base: "full", md: "560px" }} w="full" mx="auto">
+            {content?.started?.banner?.src ? (
+              <Image
+                src={content.started.banner.src}
+                alt={content.started.banner.alt ?? content.started.banner.label ?? ""}
+                h={{ base: "140px", md: "170px" }}
+                w="full"
+                objectFit="cover"
+                borderRadius="homeCard"
+              />
+            ) : (
+              <HomeImagePlaceholder height="170px" label="Insert banner pic here" />
+            )}
           </Box>
         </SimpleGrid>
       </Stack>
 
       <Stack gap="homeSectionGap" textAlign="center">
         <Heading as="h2" fontSize="homeSectionTitle" lineHeight="short" fontWeight="bold">
-          UMOJA Today
+          {content?.today?.heading ?? "UMOJA Today"}
         </Heading>
         <SimpleGrid
           columns={{ base: 1, md: 2 }}
-          gap="homeCardGap"
+          gap={{ base: "homeCardGap", md: 10 }}
           p="homeCardPadding"
           alignItems="center"
         >
-          <Stack gap="homeCardInnerGap" textAlign="right">
+          <Stack gap="homeCardInnerGap" textAlign="right" align="center">
             <Box bg="homeMediaBg" borderRadius="homeMedia" p="homeCardPadding">
               <SimpleGrid columns={{ base: 1, md: 2 }} gap="homeCardInnerGap">
                 {todayImageSlots.map((slot, index) => {
-                  const image = imagePhotos[index];
+                  const media = todayMedia[index];
 
-                  return image?.src ? (
+                  return media?.type === "video" && media.src ? (
+                    <video
+                      key={media.src}
+                      src={media.src}
+                      poster={media.poster}
+                      controls
+                      style={{
+                        width: "100%",
+                        height: "136px",
+                        objectFit: "cover",
+                        borderRadius: "14px",
+                      }}
+                    />
+                  ) : media?.src ? (
                     <Image
-                      key={image.src}
-                      src={image.src}
-                      alt={image.alt ?? image.label ?? "UMOJA photo placeholder"}
+                      key={media.src}
+                      src={media.src}
+                      alt={media.alt ?? media.label ?? "UMOJA photo placeholder"}
                       h="homeMediaHeight"
                       w="homeHeroImage"
                       objectFit="cover"
@@ -151,7 +216,9 @@ export default function HomeOverview({
               </SimpleGrid>
             </Box>
             <Link asChild fontSize="homeLink" color="homeText" fontWeight="bold">
-              <NextLink href={photoGalleryHref}>View photo gallery</NextLink>
+              <NextLink href={photoGalleryHref}>
+                {content?.today?.galleryLinkLabel ?? "View photo gallery"}
+              </NextLink>
             </Link>
           </Stack>
 
@@ -164,10 +231,10 @@ export default function HomeOverview({
               fontWeight="bold"
               textAlign="right"
             >
-              {introCopy}
+              {content?.today?.intro}
             </Heading>
             <Text fontSize="homeBody" color="homeMutedText" lineHeight="tall" textAlign="right">
-              {detailCopy}
+              {content?.today?.body}
             </Text>
           </Stack>
         </SimpleGrid>

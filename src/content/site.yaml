@@ -1,4 +1,27 @@
 home:
+  overview:
+    heroTitle: This is FAMILY. This is JOY. This is UMOJA.
+    heroMedia:
+      type: video
+      src: https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4
+      poster: https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1600&q=80
+      alt: UMOJA community highlight video
+    started:
+      heading: How UMOJA started
+      intro: "General Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      banner:
+        type: image
+        src: https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=1200&q=80
+        alt: Youth team in a huddle
+    today:
+      heading: UMOJA Today
+      intro: "General Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      galleryLinkLabel: View photo gallery
+  registration:
+    showButton: false
+    label: Register with UMOJA
   whatWeOffer:
     heading: What We Offer
     items:
