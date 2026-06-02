@@ -106,8 +106,8 @@ export default async function Home() {
 
   return (
     <Box bg="homePageBg" color="homeText">
-      <Container maxW="homePage" px="homePageX" py="homeSectionY">
-        <Stack gap="homeSectionY" align="center">
+      <Container maxW="homePage" w="full" mx="auto" px="homePageX" py="homeSectionY">
+        <Stack gap="homeSectionY" align="center" w="full" mx="auto">
           <HomeOverview
             content={site.home?.overview}
             missionContent={about.mission?.content}
@@ -150,7 +150,7 @@ export default async function Home() {
               w="full"
               alignItems="start"
             >
-              <Stack gap={2} textAlign={{ base: "center", lg: "left" }} align={{ base: "center", lg: "flex-start" }}>
+              <Stack gap={2} textAlign="center" align="center">
                 <Heading as="h2" fontSize="homeSectionTitle" lineHeight="short" fontWeight="bold">
                   {site.home?.voices?.heading ?? "Voices of Our Community"}
                 </Heading>

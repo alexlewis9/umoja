@@ -1,8 +1,8 @@
 import {
   Box,
+  Button,
   Heading,
   Image,
-  Link,
   SimpleGrid,
   Stack,
   Text,
@@ -43,6 +43,7 @@ type HomeOverviewProps = {
 
 const fallbackHeroImage = "/umoja_logo_new.jpg";
 const todayImageSlots = ["today-photo-one", "today-photo-two", "today-photo-three"];
+const homeOverviewMaxWidth = "1120px";
 
 function HomeImagePlaceholder({
   height = "homeMediaHeight",
@@ -85,11 +86,13 @@ export default function HomeOverview({
   const startedBody = content?.started?.body ?? missionContent;
 
   return (
-    <Stack as="section" gap="homeSectionY" color="homeText" w="full">
+    <Stack as="section" gap="homeSectionY" color="homeText" w="full" align="center" mx="auto">
       <Box
         position="relative"
         h="homeHero"
         w="full"
+        maxW={homeOverviewMaxWidth}
+        mx="auto"
         overflow="hidden"
         borderRadius="homeCard"
       >
@@ -116,18 +119,28 @@ export default function HomeOverview({
         <Heading
           as="h1"
           position="absolute"
-          insetInline="homeHeroTextInset"
+          left="50%"
           bottom="homeHeroTextInset"
+          transform="translateX(-50%)"
+          w="calc(100% - 48px)"
           color="homeOverlayText"
           fontSize="homeHeroTitle"
           lineHeight="short"
           textShadow="homeHeroText"
+          textAlign="center"
         >
           {content?.heroTitle ?? "This is FAMILY. This is JOY. This is UMOJA."}
         </Heading>
       </Box>
 
-      <Stack gap="homeSectionGap" textAlign="center">
+      <Stack
+        gap="homeSectionGap"
+        textAlign="center"
+        w="full"
+        maxW={homeOverviewMaxWidth}
+        align="center"
+        mx="auto"
+      >
         <Heading as="h2" fontSize="homeSectionTitle" lineHeight="short" fontWeight="bold">
           {content?.started?.heading ?? "How UMOJA started"}
         </Heading>
@@ -136,8 +149,12 @@ export default function HomeOverview({
           gap={{ base: "homeCardGap", md: 12 }}
           p="homeCardPadding"
           alignItems="center"
+          justifyItems="center"
+          w="full"
+          maxW={homeOverviewMaxWidth}
+          mx="auto"
         >
-          <Stack gap="homeCardInnerGap" textAlign="left">
+          <Stack gap="homeCardInnerGap" textAlign="center" align="center" maxW="520px">
             <Heading
               as="h3"
               fontSize="homeLead"
@@ -170,7 +187,14 @@ export default function HomeOverview({
         </SimpleGrid>
       </Stack>
 
-      <Stack gap="homeSectionGap" textAlign="center">
+      <Stack
+        gap="homeSectionGap"
+        textAlign="center"
+        w="full"
+        maxW={homeOverviewMaxWidth}
+        align="center"
+        mx="auto"
+      >
         <Heading as="h2" fontSize="homeSectionTitle" lineHeight="short" fontWeight="bold">
           {content?.today?.heading ?? "UMOJA Today"}
         </Heading>
@@ -179,8 +203,12 @@ export default function HomeOverview({
           gap={{ base: "homeCardGap", md: 10 }}
           p="homeCardPadding"
           alignItems="center"
+          justifyItems="center"
+          w="full"
+          maxW={homeOverviewMaxWidth}
+          mx="auto"
         >
-          <Stack gap="homeCardInnerGap" textAlign="right" align="center">
+          <Stack gap="homeCardInnerGap" textAlign="center" align="center" maxW="520px">
             <Box bg="homeMediaBg" borderRadius="homeMedia" p="homeCardPadding">
               <SimpleGrid columns={{ base: 1, md: 2 }} gap="homeCardInnerGap">
                 {todayImageSlots.map((slot, index) => {
@@ -215,25 +243,34 @@ export default function HomeOverview({
                 })}
               </SimpleGrid>
             </Box>
-            <Link asChild fontSize="homeLink" color="homeText" fontWeight="bold">
+            <Button
+              asChild
+              mt={2}
+              bg="orange.800"
+              color="white"
+              fontWeight="bold"
+              borderRadius="lg"
+              px={6}
+              _hover={{ bg: "orange.700", textDecoration: "none" }}
+            >
               <NextLink href={photoGalleryHref}>
                 {content?.today?.galleryLinkLabel ?? "View photo gallery"}
               </NextLink>
-            </Link>
+            </Button>
           </Stack>
 
-          <Stack gap="homeCardInnerGap">
+          <Stack gap="homeCardInnerGap" textAlign="center" align="center">
             <Heading
               as="h3"
               fontSize="homeLead"
               color="homeMutedText"
               lineHeight="tall"
               fontWeight="bold"
-              textAlign="right"
+              textAlign="center"
             >
               {content?.today?.intro}
             </Heading>
-            <Text fontSize="homeBody" color="homeMutedText" lineHeight="tall" textAlign="right">
+            <Text fontSize="homeBody" color="homeMutedText" lineHeight="tall" textAlign="center">
               {content?.today?.body}
             </Text>
           </Stack>
