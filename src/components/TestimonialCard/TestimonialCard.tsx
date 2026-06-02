@@ -28,22 +28,20 @@ export default function TestimonialCard({
   return (
     <Box
       bg="white"
-      borderRadius="xl"
+      borderRadius="md"
       boxShadow="md"
-      p={{ base: 4, md: 4 }}
-      maxW="md"
+      p={{ base: 4, md: 5 }}
       w="full"
       borderWidth="1px"
       borderStyle="solid"
       borderColor="border"
     >
       <Text
-        fontSize={{ base: "4xl", md: "5xl" }}
+        fontSize={{ base: "3xl", md: "4xl" }}
         lineHeight="none"
         color="orange.800"
         fontWeight="bold"
         fontFamily="serif"
-        letterSpacing="tight"
         mb={1}
         aria-hidden="true"
       >
@@ -53,8 +51,8 @@ export default function TestimonialCard({
       <Text
         mt={2}
         color="fg"
-        fontSize={{ base: "md", md: "lg" }}
-        lineHeight="tall"
+        fontSize={{ base: "sm", md: "sm" }}
+        lineHeight="normal"
       >
         {quote}
       </Text>
@@ -62,8 +60,8 @@ export default function TestimonialCard({
       {typeof normalizedRating === "number" && normalizedRating > 0 ? (
         <HStack
           mt={4}
-          gap={2}
-          justify="center"
+          gap={1.5}
+          justify="flex-start"
           color="orange.600"
           lineHeight="none"
           role="img"
@@ -73,7 +71,7 @@ export default function TestimonialCard({
             <Text
               key={index}
               data-testid="rating-star"
-              fontSize={{ base: "2xl", md: "3xl" }}
+              fontSize={{ base: "xl", md: "2xl" }}
               lineHeight="none"
               color="orange.600"
               aria-hidden="true"
@@ -86,7 +84,7 @@ export default function TestimonialCard({
 
       <Text
         mt={4}
-        fontSize={{ base: "lg", md: "xl" }}
+        fontSize={{ base: "sm", md: "sm" }}
         fontWeight="bold"
         color="fg"
       >
