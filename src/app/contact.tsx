@@ -77,8 +77,6 @@ export default function ContactPage() {
       bg="contactPageBg"
       color="white"
       minH="100vh"
-      borderBottom="20px solid"
-      borderBottomColor="black"
     >
       <Container maxW="1120px" px={{ base: 5, md: 8 }} py={{ base: 12, md: 16 }}>
         <Grid
