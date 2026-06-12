@@ -1,28 +1,17 @@
 import { Badge, Box, Link, Stack, Text } from "@chakra-ui/react";
-
-export type EventStatus = "upcoming" | "ongoing" | "past";
-
-export type EventItem = {
-  title: string;
-  date: string;
-  time?: string;
-  location: string;
-  description: string;
-  status: EventStatus;
-  registrationUrl?: string;
-};
+import type { EventItem } from "@/types/events";
 
 type EventCardProps = {
   event: EventItem;
 };
 
 export function EventCard({ event }: EventCardProps) {
-  const statusColorScheme =
+  const statusStyles =
     event.status === "upcoming"
-      ? "green"
+      ? { bg: "green.100", color: "green.800" }
       : event.status === "ongoing"
-        ? "blue"
-        : "gray";
+        ? { bg: "blue.100", color: "blue.800" }
+        : { bg: "gray.100", color: "gray.700" };
 
   return (
     <Box
@@ -32,6 +21,7 @@ export function EventCard({ event }: EventCardProps) {
       borderRadius="xl"
       p={{ base: 6, md: 8 }}
       shadow="md"
+      w="full"
     >
       <Stack gap={4}>
         <Box display="flex" justifyContent="space-between" alignItems="start">
@@ -40,9 +30,12 @@ export function EventCard({ event }: EventCardProps) {
           </Text>
 
           <Badge
-            colorScheme={statusColorScheme}
+            px={3}
+            py={1}
+            borderRadius="full"
             fontSize="sm"
             textTransform="capitalize"
+            {...statusStyles}
           >
             {event.status}
           </Badge>
