@@ -2,15 +2,8 @@ import { Container } from "@chakra-ui/react";
 import path from "path";
 import { loadYaml } from "@/lib/loadYaml";
 import PageHeader from "@/components/PageHeader/PageHeader";
-
-type EventItem = {
-  title: string;
-  date?: string;
-  time?: string;
-  location?: string;
-  description?: string;
-  imageSrc?: string;
-};
+import { EventsTable } from "@/components/EventsTable/EventsTable";
+import type { EventItem } from "@/components/EventCard/EventCard";
 
 type EventsContent = {
   header?: {
@@ -36,6 +29,8 @@ export default async function EventsPage() {
         title={content.header?.title}
         subtitle={content.header?.subtitle}
       />
+
+      <EventsTable events={content.events ?? []} />
     </Container>
   );
 }
