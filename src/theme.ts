@@ -98,7 +98,7 @@ const config = defineConfig({
         brandBannerGradient: {
           value: "linear-gradient(90deg, #431b07 41%, #823207 100%)",
         },
-        contactPageBg: { value: "{colors.brand.contactBrown}" },
+        contactPageBg: { value: "{colors.brand.russet}" },
         contactTextStrong: { value: "{colors.brand.contactBrownDark}" },
         contactAccent: { value: "{colors.brand.contactOrange}" },
         contactAccentHover: { value: "{colors.brand.contactOrangeHover}" },
