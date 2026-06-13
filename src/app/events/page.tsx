@@ -1,16 +1,10 @@
-import { Container } from "@chakra-ui/react";
+import { Container, VStack } from "@chakra-ui/react";
 import path from "path";
 import { loadYaml } from "@/lib/loadYaml";
-import PageHeader from "@/components/PageHeader/PageHeader";
-
-type EventItem = {
-  title: string;
-  date?: string;
-  time?: string;
-  location?: string;
-  description?: string;
-  imageSrc?: string;
-};
+import { EventsFilters } from "@/components/EventsFilter/eventsfilter";
+import { EventsHero } from "@/components/EventsHero/eventshero";
+import { EventsList } from "@/components/EventsList/eventslist";
+import type { EventItem } from "@/types/events";
 
 type EventsContent = {
   header?: {
@@ -25,17 +19,17 @@ export default async function EventsPage() {
   const content = (await loadYaml(eventsPath)) as EventsContent;
 
   return (
-    <Container
-      maxW="container.xl"
-      py={{ base: 12, md: 20 }}
-      textAlign="center"
-      mx="auto"
-      w="full"
-    >
-      <PageHeader
-        title={content.header?.title}
-        subtitle={content.header?.subtitle}
-      />
+    <Container maxW="container.lg" py={{ base: 16, md: 24 }}>
+      <VStack align="center" gap={8} w="full">
+        <EventsHero
+          title={content.header?.title ?? "Events"}
+          description={content.header?.subtitle}
+        />
+
+        <EventsFilters />
+
+        <EventsList events={content.events ?? []} />
+      </VStack>
     </Container>
   );
 }
