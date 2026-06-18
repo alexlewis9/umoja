@@ -1,19 +1,20 @@
 import { Box, Flex, Image, Text, chakra } from "@chakra-ui/react";
 import { RESOURCE_CARD_PLACEHOLDER_IMAGE_SRC } from "./resourceCardPlaceholder";
 
-type ResourceCardProps = {
+type ResourceItem = {
   title: string;
   description: string;
   imageSrc?: string;
   imageAlt?: string;
+};
+
+type ResourceCardProps = {
+  resource: ResourceItem;
   onClick?: () => void;
 };
 
 export default function ResourceCard({
-  title,
-  description,
-  imageSrc,
-  imageAlt = "",
+  resource,
   onClick,
 }: ResourceCardProps) {
   const cardContents = (
@@ -23,7 +24,7 @@ export default function ResourceCard({
         justify="space-between"
         gap={4}
         p={5}
-        bg="orange.900"
+        bg="linear-gradient(145deg, #2b1206, #632504)"
       >
         <Text
           fontSize="xl"
@@ -33,7 +34,7 @@ export default function ResourceCard({
           minW={0}
           lineClamp={2}
         >
-          {title}
+          {resource.title}
         </Text>
 
         <Box
@@ -47,10 +48,10 @@ export default function ResourceCard({
           justifyContent="center"
           flexShrink={0}
         >
-          {imageSrc ? (
+          {resource.imageSrc ? (
             <Image
-              src={imageSrc}
-              alt={imageAlt}
+              src={resource.imageSrc}
+              alt={resource.imageAlt}
               maxW="70%"
               maxH="70%"
               objectFit="contain"
@@ -76,9 +77,9 @@ export default function ResourceCard({
         </Box>
       </Flex>
 
-      <Box p={5}>
+      <Box p={5} bg="whiteAlpha.900">
         <Text fontSize="sm" color="fg.muted" lineClamp={4}>
-          {description}
+          {resource.description}
         </Text>
       </Box>
     </>
@@ -98,9 +99,6 @@ export default function ResourceCard({
         overflow="hidden"
         textAlign="left"
         cursor="pointer"
-        _hover={{ boxShadow: "md" }}
-        _active={{ transform: "scale(0.99)" }}
-        transition="box-shadow 120ms ease, transform 120ms ease"
       >
         {cardContents}
       </chakra.button>

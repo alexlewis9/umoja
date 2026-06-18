@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
 import Footer from "@/components/Footer/Footer";
 
+ 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],

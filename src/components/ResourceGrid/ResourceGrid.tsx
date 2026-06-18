@@ -42,11 +42,17 @@ export default function ResourceGrid<TResource>({
       <Box
         maxH={maxHeight}
         overflowY="auto"
+        scrollbarWidth="none"
         overflowX="hidden"
         pr={{ base: 1, md: 2 }}
         overscrollBehavior="contain"
+        css={{
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        }}
       >
-        <SimpleGrid columns={columns} gap={{ base: 4, md: 6 }}>
+        <SimpleGrid columns={columns} gap={{ base: 4, md: 6 }} justifyItems="center">
           {resources.map((resource, index) => {
             const key = getResourceKey?.(resource, index) ?? index;
             const card = renderCard(resource);
