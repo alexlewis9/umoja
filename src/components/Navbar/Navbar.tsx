@@ -17,6 +17,7 @@ const navItems = [
   { label: "Resources", href: "/resources" },
   { label: "FAQs", href: "/faqs" },
   { label: "Photos", href: "/photos" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -57,8 +58,7 @@ export default function Navbar() {
           >
             {navItems.map((item) => {
               const isActive =
-                pathname === item.href ||
-                pathname.startsWith(`${item.href}/`);
+                pathname === item.href || pathname.startsWith(`${item.href}/`);
 
               return (
                 <Link
