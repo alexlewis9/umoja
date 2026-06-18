@@ -19,6 +19,7 @@ export default async function RegistrationPage() {
     "src/content/registration.yaml",
   );
   const content = (await loadYaml(registrationPath)) as RegistrationContent;
+  const embedUrl = content.form?.embedUrl;
 
   return (
     <Container
@@ -31,6 +32,13 @@ export default async function RegistrationPage() {
       <PageHeader
         title={content.header?.title}
         subtitle={content.header?.subtitle}
+      />
+      <iframe
+        src={embedUrl}
+        width="100%"
+        height="800"
+        style={{ borderRadius: "0.5rem" }}
+        loading="lazy"
       />
     </Container>
   );
