@@ -72,13 +72,13 @@ export default function ContactPage() {
   }
 
   return (
-    <Box
-      as="main"
-      bg="contactPageBg"
-      color="white"
-      minH="100vh"
-    >
-      <Container maxW="1120px" px={{ base: 5, md: 8 }} py={{ base: 12, md: 16 }}>
+    <Box as="main" bg="contactPageBg" color="white" minH="100vh">
+      <Container
+        maxW="1120px"
+        px={{ base: 5, md: 8 }}
+        py={{ base: 12, md: 16 }}
+        mx="auto"
+      >
         <Grid
           templateColumns={{ base: "1fr", lg: "1fr 0.95fr" }}
           gap={{ base: 10, lg: 12 }}
