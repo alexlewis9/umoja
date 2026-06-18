@@ -19,7 +19,7 @@ export default async function EventsPage() {
   const content = (await loadYaml(eventsPath)) as EventsContent;
 
   return (
-    <Container maxW="container.lg" py={{ base: 16, md: 24 }}>
+    <Container maxW="container.lg" py={{ base: 16, md: 24 }} mx="auto">
       <VStack align="center" gap={8} w="full">
         <EventsHero
           title={content.header?.title ?? "Events"}
