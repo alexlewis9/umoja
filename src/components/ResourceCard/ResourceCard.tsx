@@ -13,10 +13,7 @@ type ResourceCardProps = {
   onClick?: () => void;
 };
 
-export default function ResourceCard({
-  resource,
-  onClick,
-}: ResourceCardProps) {
+export default function ResourceCard({ resource, onClick }: ResourceCardProps) {
   const cardContents = (
     <>
       <Flex
@@ -111,9 +108,7 @@ export default function ResourceCard({
       w={{ base: "full", sm: "72" }}
       bg="bg.surface"
       borderRadius="lg"
-      borderWidth="1px"
-      borderColor="border"
-      boxShadow="sm"
+      shadow="2xl"
       overflow="hidden"
       textAlign="left"
     >
